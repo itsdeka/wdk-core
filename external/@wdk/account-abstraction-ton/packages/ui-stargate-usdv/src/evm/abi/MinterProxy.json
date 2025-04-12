@@ -1,0 +1,545 @@
+[
+  {
+    "inputs": [
+      {
+        "internalType": "address",
+        "name": "_usdv",
+        "type": "address"
+      }
+    ],
+    "stateMutability": "nonpayable",
+    "type": "constructor"
+  },
+  {
+    "inputs": [],
+    "name": "HashExists",
+    "type": "error"
+  },
+  {
+    "inputs": [],
+    "name": "HashNotExists",
+    "type": "error"
+  },
+  {
+    "inputs": [],
+    "name": "InvalidMinter",
+    "type": "error"
+  },
+  {
+    "inputs": [],
+    "name": "MinterAlreadyRegistered",
+    "type": "error"
+  },
+  {
+    "inputs": [
+      {
+        "internalType": "uint32",
+        "name": "color",
+        "type": "uint32"
+      }
+    ],
+    "name": "MinterNotRegistered",
+    "type": "error"
+  },
+  {
+    "anonymous": false,
+    "inputs": [
+      {
+        "indexed": false,
+        "internalType": "uint256",
+        "name": "hash",
+        "type": "uint256"
+      }
+    ],
+    "name": "AddedMinterCodeHash",
+    "type": "event"
+  },
+  {
+    "anonymous": false,
+    "inputs": [
+      {
+        "indexed": true,
+        "internalType": "address",
+        "name": "previousOwner",
+        "type": "address"
+      },
+      {
+        "indexed": true,
+        "internalType": "address",
+        "name": "newOwner",
+        "type": "address"
+      }
+    ],
+    "name": "OwnershipTransferred",
+    "type": "event"
+  },
+  {
+    "anonymous": false,
+    "inputs": [
+      {
+        "indexed": false,
+        "internalType": "address",
+        "name": "minter",
+        "type": "address"
+      },
+      {
+        "indexed": false,
+        "internalType": "uint32",
+        "name": "color",
+        "type": "uint32"
+      }
+    ],
+    "name": "RegisteredMinter",
+    "type": "event"
+  },
+  {
+    "anonymous": false,
+    "inputs": [
+      {
+        "indexed": false,
+        "internalType": "uint256",
+        "name": "hash",
+        "type": "uint256"
+      }
+    ],
+    "name": "RemovedMinterCodeHash",
+    "type": "event"
+  },
+  {
+    "anonymous": false,
+    "inputs": [
+      {
+        "indexed": false,
+        "internalType": "address",
+        "name": "toSTBTLp",
+        "type": "address"
+      }
+    ],
+    "name": "SetToSTBTLp",
+    "type": "event"
+  },
+  {
+    "anonymous": false,
+    "inputs": [
+      {
+        "indexed": false,
+        "internalType": "address",
+        "name": "minter",
+        "type": "address"
+      },
+      {
+        "indexed": false,
+        "internalType": "uint32",
+        "name": "color",
+        "type": "uint32"
+      }
+    ],
+    "name": "UnregisteredMinter",
+    "type": "event"
+  },
+  {
+    "inputs": [
+      {
+        "internalType": "uint256",
+        "name": "_hash",
+        "type": "uint256"
+      }
+    ],
+    "name": "addMinterCodeHash",
+    "outputs": [],
+    "stateMutability": "nonpayable",
+    "type": "function"
+  },
+  {
+    "inputs": [
+      {
+        "internalType": "uint32",
+        "name": "color",
+        "type": "uint32"
+      }
+    ],
+    "name": "colorToMinter",
+    "outputs": [
+      {
+        "internalType": "address",
+        "name": "minter",
+        "type": "address"
+      }
+    ],
+    "stateMutability": "view",
+    "type": "function"
+  },
+  {
+    "inputs": [],
+    "name": "getMinterCodeHashes",
+    "outputs": [
+      {
+        "internalType": "uint256[]",
+        "name": "",
+        "type": "uint256[]"
+      }
+    ],
+    "stateMutability": "view",
+    "type": "function"
+  },
+  {
+    "inputs": [
+      {
+        "internalType": "uint32",
+        "name": "_color",
+        "type": "uint32"
+      }
+    ],
+    "name": "getSupportedFromTokens",
+    "outputs": [
+      {
+        "internalType": "address[]",
+        "name": "tokens",
+        "type": "address[]"
+      }
+    ],
+    "stateMutability": "view",
+    "type": "function"
+  },
+  {
+    "inputs": [
+      {
+        "internalType": "address",
+        "name": "_fromToken",
+        "type": "address"
+      },
+      {
+        "internalType": "uint256",
+        "name": "_fromTokenAmount",
+        "type": "uint256"
+      },
+      {
+        "internalType": "uint32",
+        "name": "_mintColor",
+        "type": "uint32"
+      }
+    ],
+    "name": "getSwapToUSDVAmountOut",
+    "outputs": [
+      {
+        "internalType": "uint256",
+        "name": "usdvOut",
+        "type": "uint256"
+      }
+    ],
+    "stateMutability": "view",
+    "type": "function"
+  },
+  {
+    "inputs": [
+      {
+        "internalType": "address",
+        "name": "_fromToken",
+        "type": "address"
+      },
+      {
+        "internalType": "uint256",
+        "name": "_fromTokenAmount",
+        "type": "uint256"
+      },
+      {
+        "internalType": "uint32",
+        "name": "_mintColor",
+        "type": "uint32"
+      }
+    ],
+    "name": "getSwapToUSDVAmountOutVerbose",
+    "outputs": [
+      {
+        "internalType": "uint256",
+        "name": "usdvOut",
+        "type": "uint256"
+      },
+      {
+        "internalType": "uint256",
+        "name": "fee",
+        "type": "uint256"
+      },
+      {
+        "internalType": "uint256",
+        "name": "reward",
+        "type": "uint256"
+      }
+    ],
+    "stateMutability": "view",
+    "type": "function"
+  },
+  {
+    "inputs": [
+      {
+        "internalType": "address",
+        "name": "_addr",
+        "type": "address"
+      }
+    ],
+    "name": "isRegistered",
+    "outputs": [
+      {
+        "internalType": "bool",
+        "name": "",
+        "type": "bool"
+      }
+    ],
+    "stateMutability": "view",
+    "type": "function"
+  },
+  {
+    "inputs": [
+      {
+        "internalType": "address",
+        "name": "minter",
+        "type": "address"
+      }
+    ],
+    "name": "minterToColor",
+    "outputs": [
+      {
+        "internalType": "uint32",
+        "name": "color",
+        "type": "uint32"
+      }
+    ],
+    "stateMutability": "view",
+    "type": "function"
+  },
+  {
+    "inputs": [],
+    "name": "owner",
+    "outputs": [
+      {
+        "internalType": "address",
+        "name": "",
+        "type": "address"
+      }
+    ],
+    "stateMutability": "view",
+    "type": "function"
+  },
+  {
+    "inputs": [
+      {
+        "internalType": "address",
+        "name": "_minter",
+        "type": "address"
+      }
+    ],
+    "name": "registerMinter",
+    "outputs": [],
+    "stateMutability": "nonpayable",
+    "type": "function"
+  },
+  {
+    "inputs": [
+      {
+        "internalType": "uint256",
+        "name": "_hash",
+        "type": "uint256"
+      }
+    ],
+    "name": "removeMinterCodeHash",
+    "outputs": [],
+    "stateMutability": "nonpayable",
+    "type": "function"
+  },
+  {
+    "inputs": [],
+    "name": "renounceOwnership",
+    "outputs": [],
+    "stateMutability": "nonpayable",
+    "type": "function"
+  },
+  {
+    "inputs": [
+      {
+        "internalType": "address",
+        "name": "_toSTBTLp",
+        "type": "address"
+      }
+    ],
+    "name": "setToSTBTLp",
+    "outputs": [],
+    "stateMutability": "nonpayable",
+    "type": "function"
+  },
+  {
+    "inputs": [
+      {
+        "components": [
+          {
+            "internalType": "address",
+            "name": "fromToken",
+            "type": "address"
+          },
+          {
+            "internalType": "uint256",
+            "name": "fromTokenAmount",
+            "type": "uint256"
+          },
+          {
+            "internalType": "uint64",
+            "name": "minUSDVOut",
+            "type": "uint64"
+          }
+        ],
+        "internalType": "struct IMinter.SwapParam",
+        "name": "_param",
+        "type": "tuple"
+      },
+      {
+        "internalType": "address",
+        "name": "_usdvReceiver",
+        "type": "address"
+      },
+      {
+        "internalType": "uint32",
+        "name": "_mintColor",
+        "type": "uint32"
+      }
+    ],
+    "name": "swapToUSDV",
+    "outputs": [
+      {
+        "internalType": "uint256",
+        "name": "usdvOut",
+        "type": "uint256"
+      }
+    ],
+    "stateMutability": "nonpayable",
+    "type": "function"
+  },
+  {
+    "inputs": [
+      {
+        "components": [
+          {
+            "internalType": "address",
+            "name": "fromToken",
+            "type": "address"
+          },
+          {
+            "internalType": "uint256",
+            "name": "fromTokenAmount",
+            "type": "uint256"
+          },
+          {
+            "internalType": "uint64",
+            "name": "minUSDVOut",
+            "type": "uint64"
+          }
+        ],
+        "internalType": "struct IMinter.SwapParam",
+        "name": "_param",
+        "type": "tuple"
+      },
+      {
+        "internalType": "bytes32",
+        "name": "_usdvReceiver",
+        "type": "bytes32"
+      },
+      {
+        "internalType": "uint32",
+        "name": "_dstEid",
+        "type": "uint32"
+      },
+      {
+        "internalType": "bytes",
+        "name": "_extraOptions",
+        "type": "bytes"
+      },
+      {
+        "components": [
+          {
+            "internalType": "uint256",
+            "name": "nativeFee",
+            "type": "uint256"
+          },
+          {
+            "internalType": "uint256",
+            "name": "lzTokenFee",
+            "type": "uint256"
+          }
+        ],
+        "internalType": "struct MessagingFee",
+        "name": "_msgFee",
+        "type": "tuple"
+      },
+      {
+        "internalType": "address payable",
+        "name": "_refundAddress",
+        "type": "address"
+      },
+      {
+        "internalType": "uint32",
+        "name": "_mintColor",
+        "type": "uint32"
+      }
+    ],
+    "name": "swapToUSDVAndSend",
+    "outputs": [
+      {
+        "internalType": "uint256",
+        "name": "usdvOut",
+        "type": "uint256"
+      }
+    ],
+    "stateMutability": "payable",
+    "type": "function"
+  },
+  {
+    "inputs": [],
+    "name": "toSTBTLp",
+    "outputs": [
+      {
+        "internalType": "address",
+        "name": "",
+        "type": "address"
+      }
+    ],
+    "stateMutability": "view",
+    "type": "function"
+  },
+  {
+    "inputs": [
+      {
+        "internalType": "address",
+        "name": "newOwner",
+        "type": "address"
+      }
+    ],
+    "name": "transferOwnership",
+    "outputs": [],
+    "stateMutability": "nonpayable",
+    "type": "function"
+  },
+  {
+    "inputs": [
+      {
+        "internalType": "address",
+        "name": "_minter",
+        "type": "address"
+      }
+    ],
+    "name": "unregisterMinter",
+    "outputs": [],
+    "stateMutability": "nonpayable",
+    "type": "function"
+  },
+  {
+    "inputs": [],
+    "name": "usdv",
+    "outputs": [
+      {
+        "internalType": "address",
+        "name": "",
+        "type": "address"
+      }
+    ],
+    "stateMutability": "view",
+    "type": "function"
+  }
+]

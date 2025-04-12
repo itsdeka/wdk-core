@@ -1,0 +1,52 @@
+{
+  "name": "@layerzerolabs/ui-stargate-usdv",
+  "version": "1.0.0-canary.0",
+  "main": "./dist/index.cjs",
+  "module": "./dist/index.mjs",
+  "types": "./dist/index.d.ts",
+  "exports": {
+    "types": "./dist/index.d.ts",
+    "require": "./dist/index.cjs",
+    "import": "./dist/index.mjs"
+  },
+  "sideEffects": false,
+  "files": ["dist/**"],
+  "publishConfig": {
+    "access": "restricted"
+  },
+  "scripts": {
+    "codegen": "npx typechain --target=ethers-v5 './src/evm/abi/*.json' --out-dir ./src/typechain",
+    "test": "vitest run",
+    "prebuild": "npm run clean",
+    "build": "npx tsup",
+    "dev": "npx tsup --watch",
+    "clean": "rm -rf .turbo && rm -rf node_modules && rm -rf dist"
+  },
+  "keywords": [],
+  "author": "",
+  "license": "BUSL-1.1",
+  "devDependencies": {
+    "@ethersproject/abi": "^5.7.0",
+    "@ethersproject/bytes": "^5.7.0",
+    "@ethersproject/providers": "^5.7.0",
+    "@layerzerolabs/scan-client": "1.0.0-canary.0",
+    "@layerzerolabs/tsup-config": "~0.0.3",
+    "@layerzerolabs/ui-bridge-sdk": "2.0.0-canary.0",
+    "@layerzerolabs/ui-core": "1.0.0-canary.0",
+    "@layerzerolabs/ui-evm": "1.0.0-canary.0",
+    "ethers": "^5.7.0",
+    "typechain": "^8.0.0",
+    "typescript": "^5.0.4"
+  },
+  "peerDependencies": {
+    "@ethersproject/abi": "^5.7.0",
+    "@ethersproject/bytes": "^5.7.0",
+    "@ethersproject/providers": "^5.7.0",
+    "@layerzerolabs/scan-client": "1.0.0-canary.0",
+    "@layerzerolabs/ui-bridge-sdk": "2.0.0-canary.0",
+    "@layerzerolabs/ui-core": "1.0.0-canary.0",
+    "@layerzerolabs/ui-evm": "1.0.0-canary.0",
+    "ethers": "^5.7.0",
+    "zod": "^3.22.2"
+  }
+}

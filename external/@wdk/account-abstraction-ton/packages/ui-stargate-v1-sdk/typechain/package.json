@@ -1,0 +1,5 @@
+{
+  "types": "../dist/typechain.d.ts",
+  "module": "../dist/typechain.mjs",
+  "main": "../dist/typechain.cjs"
+}

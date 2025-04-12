@@ -1,0 +1,9 @@
+{
+  "extends": "@layerzerolabs/typescript-config/library.json",
+  "exclude": ["dist", "build", "node_modules"],
+  "include": ["src", "src/types.d.ts"],
+  "compilerOptions": {
+    "module": "ESNext",
+    "outDir": "dist"
+  }
+}
