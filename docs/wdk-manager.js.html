@@ -1,4 +1,32 @@
-import { WDKWalletManagementEVM } from "@wdk/wallet-management-evm";
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="utf-8">
+    <title>JSDoc: Source: wdk-manager.js</title>
+
+    <script src="scripts/prettify/prettify.js"> </script>
+    <script src="scripts/prettify/lang-css.js"> </script>
+    <!--[if lt IE 9]>
+      <script src="//html5shiv.googlecode.com/svn/trunk/html5.js"></script>
+    <![endif]-->
+    <link type="text/css" rel="stylesheet" href="styles/prettify-tomorrow.css">
+    <link type="text/css" rel="stylesheet" href="styles/jsdoc-default.css">
+</head>
+
+<body>
+
+<div id="main">
+
+    <h1 class="page-title">Source: wdk-manager.js</h1>
+
+    
+
+
+
+    
+    <section>
+        <article>
+            <pre class="prettyprint source linenums"><code>import { WDKWalletManagementEVM } from "@wdk/wallet-management-evm";
 import { WDKAccountAbstractionEVM } from "@wdk/account-abstraction-evm";
 
 import { WDKWalletManagementTON } from "@wdk/wallet-management-ton";
@@ -48,8 +76,8 @@ import bip39 from "bip39";
  * @property {string} tonApiEndpoint - 
  * @property {string} tonCenterApiKey - 
  * @property {string} tonCenterEndpoint - 
- * @property {Object} paymasterToken -
- * @property {string} paymasterToken.address -
+ * @property {Object} jettonMaster -
+ * @property {string} jettonMaster.address -
  */
 
 /**
@@ -140,7 +168,7 @@ export default class WdkManager {
      * 
      * @param {string} blockchain - A blockchain identifier (e.g., "ethereum").
      * @param {number} accountIndex - The index of the account to use (see [BIP-44](https://en.bitcoin.it/wiki/BIP_0044)).
-     * @returns {Promise<string>} The abstracted address.
+     * @returns {Promise&lt;string>} The abstracted address.
      * 
      * @example
      * // Get the abstracted address of the ethereum wallet's account at m/44'/60'/0'/0/3
@@ -168,7 +196,7 @@ export default class WdkManager {
      * @param {string} blockchain - A blockchain identifier (e.g., "ethereum").
      * @param {number} accountIndex - The index of the account to use (see [BIP-44](https://en.bitcoin.it/wiki/BIP_0044)).
      * @param {TransferOptions} options - The transfer's options.
-     * @returns {Promise<TransferResult>} The transfer's result.
+     * @returns {Promise&lt;TransferResult>} The transfer's result.
      * 
      * @example
      * // Transfer 1.0 USDT from the ethereum wallet's account at index 0 to another address
@@ -209,7 +237,7 @@ export default class WdkManager {
      * @param {string} blockchain - A blockchain identifier (e.g., "ethereum").
      * @param {number} accountIndex - The index of the account to use (see [BIP-44](https://en.bitcoin.it/wiki/BIP_0044)).
      * @param {TransferOptions} options - The transfer's options.
-     * @returns {Promise<Omit<TransferResult, "hash">>} The transfer's quotes.
+     * @returns {Promise&lt;Omit&lt;TransferResult, "hash">>} The transfer's quotes.
      * 
      * @example
      * // Quote the transfer of 1.0 USDT from the ethereum wallet's account at index 0 to another address
@@ -254,7 +282,7 @@ export default class WdkManager {
      * @param {string} blockchain - A blockchain identifier (e.g., "ethereum").
      * @param {number} accountIndex - The index of the account to use (see [BIP-44](https://en.bitcoin.it/wiki/BIP_0044)).
      * @param {SwapOptions} options - The swap's options.
-     * @returns {Promise<SwapResult>} The swap's result.
+     * @returns {Promise&lt;SwapResult>} The swap's result.
      */
     async swap(blockchain, accountIndex, options) {
         const walletInfo = await this.#getWalletInfo(blockchain, accountIndex);
@@ -280,7 +308,7 @@ export default class WdkManager {
      * @param {string} blockchain - A blockchain identifier (e.g., "ethereum").
      * @param {number} accountIndex - The index of the account to use (see [BIP-44](https://en.bitcoin.it/wiki/BIP_0044)).
      * @param {SwapOptions} options - The swap's options.
-     * @returns {Promise<Omit<SwapResult, "hash">>} The swap's quotes.
+     * @returns {Promise&lt;Omit&lt;SwapResult, "hash">>} The swap's quotes.
      */
     async quoteSwap(blockchain, accountIndex, options) {
         const walletInfo = await this.#getWalletInfo(blockchain, accountIndex);
@@ -310,7 +338,7 @@ export default class WdkManager {
      * @param {string} blockchain - A blockchain identifier (e.g., "ethereum").
      * @param {number} accountIndex - The index of the account to use (see [BIP-44](https://en.bitcoin.it/wiki/BIP_0044)).
      * @param {BridgeOptions} options - The bridge's options.
-     * @returns {Promise<BridgeResult>} The bridge's result.
+     * @returns {Promise&lt;BridgeResult>} The bridge's result.
      */
     async bridge(blockchain, accountIndex, options) {
         const walletInfo = await this.#getWalletInfo(blockchain, accountIndex);
@@ -337,7 +365,7 @@ export default class WdkManager {
      * @param {string} blockchain - A blockchain identifier (e.g., "ethereum").
      * @param {number} accountIndex - The index of the account to use (see [BIP-44](https://en.bitcoin.it/wiki/BIP_0044)).
      * @param {BridgeOptions} options - The bridge's options.
-     * @returns {Promise<Omit<BridgeResult, "hash">>} The bridge's quotes.
+     * @returns {Promise&lt;Omit&lt;BridgeResult, "hash">>} The bridge's quotes.
      */
     async quoteBridge(blockchain, accountIndex, options) {
         const walletInfo = await this.#getWalletInfo(blockchain, accountIndex);
@@ -411,3 +439,26 @@ export default class WdkManager {
         return EVM_BLOCKCHAINS.includes(blockchain);
     }
 }
+</code></pre>
+        </article>
+    </section>
+
+
+
+
+</div>
+
+<nav>
+    <h2><a href="index.html">Home</a></h2><h3>Classes</h3><ul><li><a href="module.exports_module.exports.html">exports</a></li></ul><h3>Global</h3><ul><li><a href="global.html#bridge">bridge</a></li><li><a href="global.html#getAbstractedAddress">getAbstractedAddress</a></li><li><a href="global.html#getRandomSeedPhrase">getRandomSeedPhrase</a></li><li><a href="global.html#isValidSeedPhrase">isValidSeedPhrase</a></li><li><a href="global.html#quoteBridge">quoteBridge</a></li><li><a href="global.html#quoteSwap">quoteSwap</a></li><li><a href="global.html#quoteTransfer">quoteTransfer</a></li><li><a href="global.html#swap">swap</a></li><li><a href="global.html#transfer">transfer</a></li></ul>
+</nav>
+
+<br class="clear">
+
+<footer>
+    Documentation generated by <a href="https://github.com/jsdoc/jsdoc">JSDoc 4.0.4</a> on Sat Apr 12 2025 20:59:30 GMT+0200 (Central European Summer Time)
+</footer>
+
+<script> prettyPrint(); </script>
+<script src="scripts/linenumber.js"> </script>
+</body>
+</html>
