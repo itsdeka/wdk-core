@@ -48,6 +48,8 @@ import bip39 from "bip39";
  * @property {string} tonApiEndpoint - 
  * @property {string} tonCenterApiKey - 
  * @property {string} tonCenterEndpoint - 
+ * @property {Object} jettonMaster -
+ * @property {string} jettonMaster.address -
  */
 
 /**
