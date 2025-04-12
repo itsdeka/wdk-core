@@ -168,8 +168,6 @@ class BridgeOperations {
    * @param {string} opts.address - Source address
    * @param {string} opts.recipient - Recipient address
    * @param {string} opts.chain - Target chain ('ethereum', 'arbitrum', or 'tron')
-   * @param {string} opts.tokenAddress - Token contract address
-   * @param {number} opts.tokenDecimals - Number of decimals for the token
    * @param {string} opts.nativeTokenDropAmount - Amount of native token to drop on destination chain
    * @param {boolean} [opts.simulate] - Whether to simulate the transaction
    * @param {Buffer} opts.publicKey - Public key buffer
@@ -179,7 +177,7 @@ class BridgeOperations {
    * @throws {Error} If chain is unsupported or insufficient balance
    */
   async bridge(opts) {
-    const { address, recipient, chain, tokenAddress, tokenDecimals, nativeTokenDropAmount, simulate, publicKey, privateKey } = opts;
+    const { address, recipient, chain, nativeTokenDropAmount, simulate, publicKey, privateKey } = opts;
 
     if (!['ethereum', 'arbitrum', 'tron'].includes(chain)) {
       throw new Error('Unsupported chain.');
@@ -187,7 +185,7 @@ class BridgeOperations {
 
     const amount = opts.amount;
 
-    const jettonAddress = Address.parse(tokenAddress);
+    const jettonAddress = Address.parse(this._accountAbstraction.paymasterToken.address);
 
     const wallet = WalletContractV5R1.create({
       workchain: 0,
@@ -209,12 +207,12 @@ class BridgeOperations {
       dstChainKey: chain,
       srcAddress: address,
       srcAmount: CurrencyAmount.fromRawAmount(
-        Token.from({ decimals: tokenDecimals, chainKey: 'ton' }),
+        Token.from({ decimals: 6, chainKey: 'ton' }),
         amount
       ),
       dstAddress: this._parseAddressToHex(recipient),
       dstAmountMin: CurrencyAmount.fromRawAmount(
-        Token.from({ decimals: tokenDecimals, chainKey: chain }),
+        Token.from({ decimals: 6, chainKey: chain }),
         1
       ),
       fee: {

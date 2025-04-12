@@ -14,6 +14,8 @@ const { TonApiClient } = require("@ton-api/client");
  * @property {string} tonCenterEndpoint - TON endpoint URL
  * @property {string} tonApiKey - Optional API key for TON API
  * @property {string} tonCenterApiKey - Optional API key for TON Center API
+ * @property {Object} paymasterToken - Paymaster token configuration
+ * @property {string} paymasterToken.address - Paymaster token contract address
  */
 
 /**
@@ -36,6 +38,7 @@ class WDKAccountAbstractionTON {
     this.tonApiEndpoint = config.tonApiEndpoint || 'https://tonapi.io/v2';
     this.tonCenterEndpoint = config.tonCenterEndpoint || 'https://toncenter.com/api/v2/jsonRPC';
     this.tonApiKey = config.tonApiKey;
+    this.paymasterToken = config.paymasterToken;
     this.tonCenterClient = new TonClient({ 
       endpoint: this.tonCenterEndpoint,
       apiKey: config.tonCenterApiKey
@@ -106,8 +109,6 @@ class WDKAccountAbstractionTON {
    * @param {string} opts.address - Source address
    * @param {string} opts.receiver - Destination address
    * @param {string} opts.chain - Target chain ('ethereum', 'arbitrum', or 'tron')
-   * @param {string} opts.tokenAddress - Token contract address
-   * @param {number} opts.tokenDecimals - Number of decimals for the token
    * @param {string} opts.nativeTokenDropAmount - Amount of native token to drop on destination chain
    * @param {boolean} [opts.simulate] - Whether to simulate the transaction
    * @param {Buffer} opts.publicKey - Public key buffer
@@ -125,8 +126,6 @@ class WDKAccountAbstractionTON {
    * @param {string} opts.address - Source address
    * @param {string} opts.receiver - Destination address
    * @param {string} opts.chain - Target chain ('ethereum', 'arbitrum', or 'tron')
-   * @param {string} opts.tokenAddress - Token contract address
-   * @param {number} opts.tokenDecimals - Number of decimals for the token
    * @param {string} opts.nativeTokenDropAmount - Amount of native token to drop on destination chain
    * @param {Buffer} opts.publicKey - Public key buffer
    * @param {Buffer} opts.privateKey - Private key buffer
@@ -331,7 +330,7 @@ class WDKAccountAbstractionTON {
       .endCell();
 
     const params = await this.tonApiClient.gasless.gaslessEstimate(
-      jettonMasterAddress,
+      Address.parse(this.paymasterToken.address),
       {
         walletAddress: wallet.address,
         walletPublicKey: publicKey.toString("hex"),
@@ -348,15 +347,6 @@ class WDKAccountAbstractionTON {
         hash: null,
         gasCost: Number(params.commission),
       }
-    }
-
-    const jettonBalance = await this.getJettonBalance(
-      jettonMasterAddress,
-      wallet.address
-    );
-
-    if (jettonBalance - params.commission < amount) {
-      throw new Error("Not enough jetton balance");
     }
 
     const seqno = await contract.getSeqno();

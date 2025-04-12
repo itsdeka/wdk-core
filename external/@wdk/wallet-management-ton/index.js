@@ -12,7 +12,7 @@ import {
   signVerify, 
   KeyPair 
 } from '@ton/crypto';
-
+const { WalletContractV5R1 } = require('@ton/ton');
 import nacl from 'tweetnacl';
 
 /**
@@ -109,12 +109,17 @@ export class WDKWalletManagementTON {
       const mnemonicArray = this.normalizeMnemonic(mnemonicPhrase);
       const seedBuffer = (await mnemonicToSeed(mnemonicArray, seed ? seed : 'TON default seed'));
       let keyPair = nacl.sign.keyPair.fromSeed(seedBuffer.slice(0, 32));
+      const wallet = WalletContractV5R1.create({ 
+        workchain: 0, 
+        publicKey: keyPair.publicKey 
+      });
 
       return {
         mnemonic: mnemonicPhrase,
         keyPair,
         publicKey: Buffer.from(keyPair.publicKey),
-        secretKey: Buffer.from(keyPair.secretKey)
+        secretKey: Buffer.from(keyPair.secretKey),
+        address: wallet.address.toString({bounceable: false})
       };
     } catch (error) {
       console.error("Error getting wallet details:", error);
