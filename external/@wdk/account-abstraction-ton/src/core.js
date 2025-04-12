@@ -38,7 +38,6 @@ class WDKAccountAbstractionTON {
     this.tonApiEndpoint = config.tonApiEndpoint || 'https://tonapi.io/v2';
     this.tonCenterEndpoint = config.tonCenterEndpoint || 'https://toncenter.com/api/v2/jsonRPC';
     this.tonApiKey = config.tonApiKey;
-    this.jettonMaster = config.jettonMaster;
     this.paymasterToken = config.paymasterToken;
     this.tonCenterClient = new TonClient({ 
       endpoint: this.tonCenterEndpoint,
