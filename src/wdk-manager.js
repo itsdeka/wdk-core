@@ -158,7 +158,7 @@ export default class WdkManager {
         }
 
         if (blockchain == "ton") {
-            
+            return walletInfo.address;
         }
     }
 
@@ -239,12 +239,17 @@ export default class WdkManager {
         }
 
         if (blockchain == "ton") {
-            return await manager.quoteSend({
+            const { success, ...quote } = await manager.quoteSend({
                 ...walletInfo,
                 recipient: options.recipient,
                 amount: options.amount,
                 jettonMaster: options.token
             });
+
+            if (!success)
+                throw new Error("Quote error:", quote.details);
+
+            return quote;
         }
     }
 
@@ -326,7 +331,7 @@ export default class WdkManager {
         }
 
         if (blockchain == "ton") {
-
+            
         }
     }
 
