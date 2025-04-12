@@ -185,7 +185,7 @@ class BridgeOperations {
 
     const amount = opts.amount;
 
-    const jettonAddress = Address.parse(this._accountAbstraction.jettonMaster.address);
+    const jettonAddress = Address.parse(this._accountAbstraction.paymasterToken.address);
 
     const wallet = WalletContractV5R1.create({
       workchain: 0,
@@ -207,12 +207,12 @@ class BridgeOperations {
       dstChainKey: chain,
       srcAddress: address,
       srcAmount: CurrencyAmount.fromRawAmount(
-        Token.from({ decimals: this._accountAbstraction.jettonMaster.decimals, chainKey: 'ton' }),
+        Token.from({ decimals: 6, chainKey: 'ton' }),
         amount
       ),
       dstAddress: this._parseAddressToHex(recipient),
       dstAmountMin: CurrencyAmount.fromRawAmount(
-        Token.from({ decimals: this._accountAbstraction.jettonMaster.decimals, chainKey: chain }),
+        Token.from({ decimals: 6, chainKey: chain }),
         1
       ),
       fee: {

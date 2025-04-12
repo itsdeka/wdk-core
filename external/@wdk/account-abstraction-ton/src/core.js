@@ -14,12 +14,8 @@ const { TonApiClient } = require("@ton-api/client");
  * @property {string} tonCenterEndpoint - TON endpoint URL
  * @property {string} tonApiKey - Optional API key for TON API
  * @property {string} tonCenterApiKey - Optional API key for TON Center API
- * @property {Object} account_abstraction - Account abstraction configuration
- * @property {Object} account_abstraction.tonapi - TON API account abstraction settings
- * @property {Object} account_abstraction.tonapi.paymasterToken - Paymaster token configuration
- * @property {string} account_abstraction.tonapi.paymasterToken.address - Paymaster token contract address
- * @property {string} account_abstraction.tonapi.paymasterToken.symbol - Paymaster token symbol
- * @property {number} account_abstraction.tonapi.paymasterToken.decimals - Paymaster token decimals
+ * @property {Object} paymasterToken - Paymaster token configuration
+ * @property {string} paymasterToken.address - Paymaster token contract address
  */
 
 /**
@@ -43,15 +39,7 @@ class WDKAccountAbstractionTON {
     this.tonCenterEndpoint = config.tonCenterEndpoint || 'https://toncenter.com/api/v2/jsonRPC';
     this.tonApiKey = config.tonApiKey;
     this.jettonMaster = config.jettonMaster;
-    this.accountAbstraction = config.account_abstraction || {
-      tonapi: {
-        paymasterToken: {
-          address: 'EQCxE6mUtQJKFnGfaROTKOt1lZbDiiX1kCixRv7Nw2Id_sDs',
-          symbol: 'USDT',
-          decimals: 6
-        }
-      }
-    };
+    this.paymasterToken = config.paymasterToken;
     this.tonCenterClient = new TonClient({ 
       endpoint: this.tonCenterEndpoint,
       apiKey: config.tonCenterApiKey
@@ -59,7 +47,7 @@ class WDKAccountAbstractionTON {
     this.tonApiClient = new TonApiClient({
       apiKey: this.tonApiKey
     });
-    this.bridgeOps = new BridgeOperations(this.tonCenterClient, this.accountAbstraction);
+    this.bridgeOps = new BridgeOperations(this.tonCenterClient, this);
   }
 
   /**
@@ -343,7 +331,7 @@ class WDKAccountAbstractionTON {
       .endCell();
 
     const params = await this.tonApiClient.gasless.gaslessEstimate(
-      Address.parse(this.accountAbstraction.tonapi.paymasterToken.address),
+      Address.parse(this.paymasterToken.address),
       {
         walletAddress: wallet.address,
         walletPublicKey: publicKey.toString("hex"),
