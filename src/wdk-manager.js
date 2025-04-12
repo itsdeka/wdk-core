@@ -111,6 +111,7 @@ const SUPPORTED_BLOCKCHAINS = [
 export default class WdkManager {
     #seed;
     #accountAbstractionsManagers;
+    #safe4337PackCache;
 
     /**
      * Creates a new wallet development kit manager.
@@ -120,8 +121,8 @@ export default class WdkManager {
      */
     constructor(seed, accountAbstractionConfig) {
         this.#seed = seed;
-
         this.#accountAbstractionsManagers = { }
+        this.#safe4337PackCache = new Map();
 
         for (const blockchain of EVM_BLOCKCHAINS) {
             const config = accountAbstractionConfig[blockchain];
@@ -152,8 +153,14 @@ export default class WdkManager {
         const manager = this.#accountAbstractionsManagers[blockchain];
 
         if (this.#isEvmBlockchain(blockchain)) {
-            const safe4337Pack = await manager.getSafe4337Pack(walletInfo);
-    
+            const cacheKey = `${blockchain}-${accountIndex}`;
+            
+            if (!this.#safe4337PackCache.has(cacheKey)) {
+                const safe4337Pack = await manager.getSafe4337Pack(walletInfo);
+                this.#safe4337PackCache.set(cacheKey, safe4337Pack);
+            }
+            
+            const safe4337Pack = this.#safe4337PackCache.get(cacheKey);
             return await manager.getAbstractedAddress(safe4337Pack);
         }
 
@@ -186,9 +193,17 @@ export default class WdkManager {
         const manager = this.#accountAbstractionsManagers[blockchain];
 
         if (this.#isEvmBlockchain(blockchain)) {
+            const cacheKey = `${blockchain}-${accountIndex}`;
+            
+            if (!this.#safe4337PackCache.has(cacheKey)) {
+                const safe4337Pack = await manager.getSafe4337Pack(walletInfo);
+                this.#safe4337PackCache.set(cacheKey, safe4337Pack);
+            }
+            
+            const safe4337Pack = this.#safe4337PackCache.get(cacheKey);
             return await manager.send({
                 ...options,
-                safe4337Pack: await manager.getSafe4337Pack(walletInfo)
+                safe4337Pack
             });
         }
 
@@ -227,9 +242,17 @@ export default class WdkManager {
         const manager = this.#accountAbstractionsManagers[blockchain];
 
         if (this.#isEvmBlockchain(blockchain)) {
+            const cacheKey = `${blockchain}-${accountIndex}`;
+            
+            if (!this.#safe4337PackCache.has(cacheKey)) {
+                const safe4337Pack = await manager.getSafe4337Pack(walletInfo);
+                this.#safe4337PackCache.set(cacheKey, safe4337Pack);
+            }
+            
+            const safe4337Pack = this.#safe4337PackCache.get(cacheKey);
             const { success, ...quote } = await manager.quoteSend({
                 ...options,
-                safe4337Pack: await manager.getSafe4337Pack(walletInfo)
+                safe4337Pack
             });
 
             if (!success)
@@ -267,9 +290,17 @@ export default class WdkManager {
         const manager = this.#accountAbstractionsManagers[blockchain];
 
         if (this.#isEvmBlockchain(blockchain)) {
+            const cacheKey = `${blockchain}-${accountIndex}`;
+            
+            if (!this.#safe4337PackCache.has(cacheKey)) {
+                const safe4337Pack = await manager.getSafe4337Pack(walletInfo);
+                this.#safe4337PackCache.set(cacheKey, safe4337Pack);
+            }
+            
+            const safe4337Pack = this.#safe4337PackCache.get(cacheKey);
             return await manager.swap({
                 ...options,
-                safe4337Pack: await manager.getSafe4337Pack(walletInfo)
+                safe4337Pack
             });
         }
 
@@ -293,9 +324,17 @@ export default class WdkManager {
         const manager = this.#accountAbstractionsManagers[blockchain];
 
         if (this.#isEvmBlockchain(blockchain)) {
+            const cacheKey = `${blockchain}-${accountIndex}`;
+            
+            if (!this.#safe4337PackCache.has(cacheKey)) {
+                const safe4337Pack = await manager.getSafe4337Pack(walletInfo);
+                this.#safe4337PackCache.set(cacheKey, safe4337Pack);
+            }
+            
+            const safe4337Pack = this.#safe4337PackCache.get(cacheKey);
             const { success, ...quote } = await manager.quoteSwap({
                 ...options,
-                safe4337Pack: await manager.getSafe4337Pack(walletInfo)
+                safe4337Pack
             });
 
             if (!success)
@@ -323,10 +362,18 @@ export default class WdkManager {
         const manager = this.#accountAbstractionsManagers[blockchain];
 
         if (this.#isEvmBlockchain(blockchain)) {
+            const cacheKey = `${blockchain}-${accountIndex}`;
+            
+            if (!this.#safe4337PackCache.has(cacheKey)) {
+                const safe4337Pack = await manager.getSafe4337Pack(walletInfo);
+                this.#safe4337PackCache.set(cacheKey, safe4337Pack);
+            }
+            
+            const safe4337Pack = this.#safe4337PackCache.get(cacheKey);
             return await manager.bridge({
                 ...options,
                 sourceChain: blockchain,
-                safe4337Pack: await manager.getSafe4337Pack(walletInfo)
+                safe4337Pack
             });
         }
 
@@ -353,10 +400,19 @@ export default class WdkManager {
         const manager = this.#accountAbstractionsManagers[blockchain];
 
         if (this.#isEvmBlockchain(blockchain)) {
+            const cacheKey = `${blockchain}-${accountIndex}`;
+            
+            if (!this.#safe4337PackCache.has(cacheKey)) {
+                const safe4337Pack = await manager.getSafe4337Pack(walletInfo);
+                this.#safe4337PackCache.set(cacheKey, safe4337Pack);
+            }
+            
+            const safe4337Pack = this.#safe4337PackCache.get(cacheKey);
+
             const { success, ...quote } = await manager.quoteBridge({
                 ...options,
                 sourceChain: blockchain,
-                safe4337Pack: await manager.getSafe4337Pack(walletInfo)
+                safe4337Pack
             });
 
             if (!success)
@@ -410,7 +466,7 @@ export default class WdkManager {
             const manager = new WDKWalletManagementEVM();
 
             return await manager
-                .createWalletByIndex(seed instanceof string ? seed : seed.evm, accountIndex);
+                .createWalletByIndex(typeof seed === 'string' ? seed : seed.evm, accountIndex);
         } 
         
         if (blockchain == "ton") {
@@ -419,7 +475,7 @@ export default class WdkManager {
             const accountIndexSeed = manager.getSeed(accountIndex);
 
             return await manager
-                .getWalletDetails(seed instanceof string ? seed : seed.ton, accountIndexSeed);
+                .getWalletDetails(typeof seed === 'string' ? seed.split(' ') : seed.ton, accountIndexSeed);
         }
     }
 
