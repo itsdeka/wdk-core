@@ -14,6 +14,12 @@ const { TonApiClient } = require("@ton-api/client");
  * @property {string} tonCenterEndpoint - TON endpoint URL
  * @property {string} tonApiKey - Optional API key for TON API
  * @property {string} tonCenterApiKey - Optional API key for TON Center API
+ * @property {Object} account_abstraction - Account abstraction configuration
+ * @property {Object} account_abstraction.tonapi - TON API account abstraction settings
+ * @property {Object} account_abstraction.tonapi.paymasterToken - Paymaster token configuration
+ * @property {string} account_abstraction.tonapi.paymasterToken.address - Paymaster token contract address
+ * @property {string} account_abstraction.tonapi.paymasterToken.symbol - Paymaster token symbol
+ * @property {number} account_abstraction.tonapi.paymasterToken.decimals - Paymaster token decimals
  */
 
 /**
@@ -36,6 +42,16 @@ class WDKAccountAbstractionTON {
     this.tonApiEndpoint = config.tonApiEndpoint || 'https://tonapi.io/v2';
     this.tonCenterEndpoint = config.tonCenterEndpoint || 'https://toncenter.com/api/v2/jsonRPC';
     this.tonApiKey = config.tonApiKey;
+    this.jettonMaster = config.jettonMaster;
+    this.accountAbstraction = config.account_abstraction || {
+      tonapi: {
+        paymasterToken: {
+          address: 'EQCxE6mUtQJKFnGfaROTKOt1lZbDiiX1kCixRv7Nw2Id_sDs',
+          symbol: 'USDT',
+          decimals: 6
+        }
+      }
+    };
     this.tonCenterClient = new TonClient({ 
       endpoint: this.tonCenterEndpoint,
       apiKey: config.tonCenterApiKey
@@ -43,7 +59,7 @@ class WDKAccountAbstractionTON {
     this.tonApiClient = new TonApiClient({
       apiKey: this.tonApiKey
     });
-    this.bridgeOps = new BridgeOperations(this.tonCenterClient, this);
+    this.bridgeOps = new BridgeOperations(this.tonCenterClient, this.accountAbstraction);
   }
 
   /**
@@ -106,8 +122,6 @@ class WDKAccountAbstractionTON {
    * @param {string} opts.address - Source address
    * @param {string} opts.receiver - Destination address
    * @param {string} opts.chain - Target chain ('ethereum', 'arbitrum', or 'tron')
-   * @param {string} opts.tokenAddress - Token contract address
-   * @param {number} opts.tokenDecimals - Number of decimals for the token
    * @param {string} opts.nativeTokenDropAmount - Amount of native token to drop on destination chain
    * @param {boolean} [opts.simulate] - Whether to simulate the transaction
    * @param {Buffer} opts.publicKey - Public key buffer
@@ -125,8 +139,6 @@ class WDKAccountAbstractionTON {
    * @param {string} opts.address - Source address
    * @param {string} opts.receiver - Destination address
    * @param {string} opts.chain - Target chain ('ethereum', 'arbitrum', or 'tron')
-   * @param {string} opts.tokenAddress - Token contract address
-   * @param {number} opts.tokenDecimals - Number of decimals for the token
    * @param {string} opts.nativeTokenDropAmount - Amount of native token to drop on destination chain
    * @param {Buffer} opts.publicKey - Public key buffer
    * @param {Buffer} opts.privateKey - Private key buffer
@@ -331,7 +343,7 @@ class WDKAccountAbstractionTON {
       .endCell();
 
     const params = await this.tonApiClient.gasless.gaslessEstimate(
-      jettonMasterAddress,
+      Address.parse(this.accountAbstraction.tonapi.paymasterToken.address),
       {
         walletAddress: wallet.address,
         walletPublicKey: publicKey.toString("hex"),
@@ -348,15 +360,6 @@ class WDKAccountAbstractionTON {
         hash: null,
         gasCost: Number(params.commission),
       }
-    }
-
-    const jettonBalance = await this.getJettonBalance(
-      jettonMasterAddress,
-      wallet.address
-    );
-
-    if (jettonBalance - params.commission < amount) {
-      throw new Error("Not enough jetton balance");
     }
 
     const seqno = await contract.getSeqno();
