@@ -331,7 +331,10 @@ export default class WdkManager {
         }
 
         if (blockchain == "ton") {
-            
+            return await manager.bridge({
+                ...options,
+                ...walletInfo
+            });
         }
     }
 
@@ -363,7 +366,15 @@ export default class WdkManager {
         }
 
         if (blockchain == "ton") {
-            
+            const { success, ...quote } = await manager.quoteBridge({
+                ...walletInfo,
+                ...options
+            });
+
+            if (!success)
+                throw new Error("Quote error:", quote.details);
+
+            return quote;
         }
     }
 

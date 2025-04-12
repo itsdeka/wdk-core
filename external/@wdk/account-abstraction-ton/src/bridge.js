@@ -167,7 +167,7 @@ class BridgeOperations {
    * @param {Object} opts - Bridge operation options
    * @param {string} opts.address - Source address
    * @param {string} opts.recipient - Recipient address
-   * @param {string} opts.chain - Target chain ('ethereum', 'arbitrum', or 'tron')
+   * @param {string} opts.targetChain - Target chain ('ethereum', 'arbitrum', or 'tron')
    * @param {string} opts.nativeTokenDropAmount - Amount of native token to drop on destination chain
    * @param {boolean} [opts.simulate] - Whether to simulate the transaction
    * @param {Buffer} opts.publicKey - Public key buffer
@@ -177,9 +177,9 @@ class BridgeOperations {
    * @throws {Error} If chain is unsupported or insufficient balance
    */
   async bridge(opts) {
-    const { address, recipient, chain, nativeTokenDropAmount, simulate, publicKey, privateKey } = opts;
+    const { address, recipient, targetChain, nativeTokenDropAmount, simulate, publicKey, privateKey } = opts;
 
-    if (!['ethereum', 'arbitrum', 'tron'].includes(chain)) {
+    if (!['ethereum', 'arbitrum', 'tron'].includes(targetChain)) {
       throw new Error('Unsupported chain.');
     }
 
@@ -204,7 +204,7 @@ class BridgeOperations {
     );
 
     const body = await this._getBridgeBody({
-      dstChainKey: chain,
+      dstChainKey: targetChain,
       srcAddress: address,
       srcAmount: CurrencyAmount.fromRawAmount(
         Token.from({ decimals: 6, chainKey: 'ton' }),
@@ -212,7 +212,7 @@ class BridgeOperations {
       ),
       dstAddress: this._parseAddressToHex(recipient),
       dstAmountMin: CurrencyAmount.fromRawAmount(
-        Token.from({ decimals: 6, chainKey: chain }),
+        Token.from({ decimals: 6, chainKey: targetChain }),
         1
       ),
       fee: {
@@ -252,9 +252,7 @@ class BridgeOperations {
    * @param {Object} opts - Bridge operation options
    * @param {string} opts.address - Source address
    * @param {string} opts.recipient - Recipient address
-   * @param {string} opts.chain - Target chain ('ethereum', 'arbitrum', or 'tron')
-   * @param {string} opts.tokenAddress - Token contract address
-   * @param {number} opts.tokenDecimals - Number of decimals for the token
+   * @param {string} opts.targetChain - Target chain ('ethereum', 'arbitrum', or 'tron')
    * @param {string} opts.nativeTokenDropAmount - Amount of native token to drop on destination chain
    * @param {Buffer} opts.publicKey - Public key buffer
    * @param {Buffer} opts.privateKey - Private key buffer
