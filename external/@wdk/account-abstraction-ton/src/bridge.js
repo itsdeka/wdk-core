@@ -221,7 +221,7 @@ class BridgeOperations {
           100_000_000
         )
       },
-      dstNativeAmount: BigInt(nativeTokenDropAmount)
+      dstNativeAmount: BigInt(nativeTokenDropAmount ? nativeTokenDropAmount : 0)
     });
 
     const message = beginCell()

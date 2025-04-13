@@ -23,6 +23,8 @@
     "@layerzerolabs/ui-bridge-oft": "file:packages/ui-bridge-oft",
     "@layerzerolabs/ui-core": "file:packages/ui-core",
     "@layerzerolabs/ui-ton": "file:packages/ui-ton",
+    "@layerzerolabs/ui-config": "file:packages/ui-config",
+    "@layerzerolabs/ui-evm": "file:packages/ui-evm",
     "@ston-fi/api": "^0.21.0",
     "@ston-fi/sdk": "^2.3.0",
     "@tact-lang/compiler": "^1.6.3",

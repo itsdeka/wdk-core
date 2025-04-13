@@ -1,0 +1,1 @@
+{"version":3,"sources":["../src/StargateVersion.ts"],"names":[],"mappings":";AAAO,IAAM,kBAAkB;AAAA,EAC7B,IAAI;AAAA,EACJ,IAAI;AACN","sourcesContent":["export const StargateVersion = {\n  V1: 'v1',\n  V2: 'v2',\n} as const;\n\nexport type StargateVersion = (typeof StargateVersion)[keyof typeof StargateVersion];\n"]}
