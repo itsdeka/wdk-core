@@ -410,7 +410,7 @@ export default class WdkManager {
             const manager = new WDKWalletManagementEVM();
 
             return await manager
-                .createWalletByIndex(seed instanceof string ? seed : seed.evm, accountIndex);
+                .createWalletByIndex(typeof seed === 'string' ? seed : seed.evm, accountIndex);
         } 
         
         if (blockchain == "ton") {
@@ -419,7 +419,7 @@ export default class WdkManager {
             const accountIndexSeed = manager.getSeed(accountIndex);
 
             return await manager
-                .getWalletDetails(seed instanceof string ? seed : seed.ton, accountIndexSeed);
+                .getWalletDetails(typeof seed === 'string' ? seed : seed.evm, accountIndex);
         }
     }
 
