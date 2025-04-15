@@ -14,9 +14,9 @@ A comprehensive Wallet Development Kit (WDK) that provides unified interfaces fo
 ## Installation
 
 ```bash
-npm install @wdk/core
+npm install https://github.com/tetherto/wdk-core
 # or
-yarn add @wdk/core
+yarn add https://github.com/tetherto/wdk-core
 ```
 
 ## Quick Start

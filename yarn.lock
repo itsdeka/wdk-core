@@ -1705,8 +1705,10 @@
   resolved "https://registry.yarnpkg.com/@wdk-account-abstraction-ton/typescript-config/-/typescript-config-0.0.3.tgz#b1183a42a869f17ac4393b45e7b4215f361625d4"
   integrity sha512-M2Gnfdnzei9e2w6oFulxALafyghFECc6fpl4VGdqhmMJ0iil1oph15q3KMTQ7BbGJB6/FkmCKyFdAId3Vsay9Q==
 
-"@wdk-account-abstraction-ton/ui-bridge-oft@file:external/@wdk/account-abstraction-ton/packages/ui-bridge-oft":
+"@wdk-account-abstraction-ton/ui-bridge-oft@canary":
   version "1.0.0-canary.4"
+  resolved "https://registry.yarnpkg.com/@wdk-account-abstraction-ton/ui-bridge-oft/-/ui-bridge-oft-1.0.0-canary.4.tgz#d8a7d6b0756e8f1e5210bfea62dc8676a02de8e1"
+  integrity sha512-fuKSSd8AegsSetCeLZfrtninNnT0LE1olLYW5L2J2sPa3rkzI3mwDGET8e0cxKLvT0lxAAtdQ2DUGg8qeCjgzw==
   dependencies:
     "@layerzerolabs/lz-solana-sdk-v2" "2.3.28"
     "@layerzerolabs/lz-ton-sdk-v2" "3.0.67"
@@ -1770,21 +1772,23 @@
     fs "*"
     lodash "4.17.21"
 
-"@wdk/account-abstraction-evm@file:./external/@wdk/account-abstraction-evm":
-  version "1.0.0"
+"@wdk/account-abstraction-evm@https://github.com/itsdeka/wdk-account-abstraction-evm":
+  version "0.1.0-beta.1"
+  resolved "https://github.com/itsdeka/wdk-account-abstraction-evm#07c7db23b9f61a46fc371a2e0e64fde461604266"
   dependencies:
     "@gelatonetwork/relay-sdk" "^5.6.0"
     "@paraswap/sdk" "^7.2.3"
     "@safe-global/safe-deployments" "^1.37.31"
     "@safe-global/safe-modules-deployments" "^2.2.7"
-    "@wdk/protocol-aave-evm" "file:../../../../Library/Caches/Yarn/v6/npm-@wdk-account-abstraction-evm-1.0.0-10129589-7fdc-4608-8eca-0c3fda56b8fb-1744703792769/node_modules/@wdk/protocol-aave-evm"
-    "@wdk/protocol-allbridge-evm" "file:../../../../Library/Caches/Yarn/v6/npm-@wdk-account-abstraction-evm-1.0.0-10129589-7fdc-4608-8eca-0c3fda56b8fb-1744703792769/node_modules/@wdk/protocol-allbridge-evm"
-    "@wdk/protocol-stargate-evm" "file:../../../../Library/Caches/Yarn/v6/npm-@wdk-account-abstraction-evm-1.0.0-10129589-7fdc-4608-8eca-0c3fda56b8fb-1744703792769/node_modules/@wdk/protocol-stargate-evm"
-    "@wdk/protocol-usdt0-evm" "file:../../../../Library/Caches/Yarn/v6/npm-@wdk-account-abstraction-evm-1.0.0-10129589-7fdc-4608-8eca-0c3fda56b8fb-1744703792769/node_modules/@wdk/protocol-usdt0-evm"
+    "@wdk/protocol-aave-evm" "https://github.com/itsdeka/wdk-protocol-lending-aave"
+    "@wdk/protocol-allbridge-evm" "https://github.com/itsdeka/wdk-protocol-bridge-allbridge"
+    "@wdk/protocol-stargate-evm" "https://github.com/itsdeka/wdk-protocol-bridge-stargate"
+    "@wdk/protocol-usdt0-evm" "https://github.com/itsdeka/wdk-protocol-bridge-usdt0"
     ethers "^6.0.0"
 
-"@wdk/account-abstraction-ton@file:./external/@wdk/account-abstraction-ton":
-  version "1.0.0"
+"@wdk/account-abstraction-ton@https://github.com/itsdeka/wdk-account-abstraction-ton-main":
+  version "0.1.0-beta.1"
+  resolved "https://github.com/itsdeka/wdk-account-abstraction-ton-main#ae72746fae597cd871c2d3add416c36877809c41"
   dependencies:
     "@ston-fi/api" "^0.21.0"
     "@ston-fi/sdk" "^2.3.0"
@@ -1797,7 +1801,7 @@
     "@ton/ton" "15.1.0"
     "@types/big.js" "^6.2.2"
     "@types/memory-cache" "^0.2.6"
-    "@wdk-account-abstraction-ton/ui-bridge-oft" "file:../../../../Library/Caches/Yarn/v6/npm-@wdk-account-abstraction-ton-1.0.0-bf7e62b3-3641-4ef2-ba8d-847ed0629597-1744703792781/node_modules/@wdk/account-abstraction-ton/packages/ui-bridge-oft"
+    "@wdk-account-abstraction-ton/ui-bridge-oft" canary
     "@wdk-account-abstraction-ton/ui-config" canary
     "@wdk-account-abstraction-ton/ui-core" canary
     "@wdk-account-abstraction-ton/ui-evm" canary
@@ -1813,35 +1817,41 @@
     tron-format-address "0.1.12"
     viem "2.22.10"
 
-"@wdk/protocol-aave-evm@file:external/@wdk/protocol-aave-evm":
-  version "1.0.0"
+"@wdk/protocol-aave-evm@https://github.com/itsdeka/wdk-protocol-lending-aave":
+  version "0.1.0-beta.1"
+  resolved "https://github.com/itsdeka/wdk-protocol-lending-aave#683bbe26c876387d74abeebfaa12359b557886b2"
   dependencies:
     ethers "^6.13.5"
 
-"@wdk/protocol-allbridge-evm@file:external/@wdk/protocol-allbridge-evm":
-  version "1.0.0"
+"@wdk/protocol-allbridge-evm@https://github.com/itsdeka/wdk-protocol-bridge-allbridge":
+  version "0.1.0-beta.1"
+  resolved "https://github.com/itsdeka/wdk-protocol-bridge-allbridge#32e2a9db6975dbbebf58942ebaebbb6bbed4180a"
   dependencies:
     bs58 "^5.0.0"
     ethers "^6.0.0"
 
-"@wdk/protocol-stargate-evm@file:external/@wdk/protocol-stargate-evm":
-  version "1.0.0"
+"@wdk/protocol-stargate-evm@https://github.com/itsdeka/wdk-protocol-bridge-stargate":
+  version "0.1.0-beta.1"
+  resolved "https://github.com/itsdeka/wdk-protocol-bridge-stargate#3dc4a14cc3687e6db6284e18a321ea3fd7778f88"
   dependencies:
     bs58 "^5.0.0"
     ethers "^6.0.0"
 
-"@wdk/protocol-usdt0-evm@file:external/@wdk/protocol-usdt0-evm":
-  version "1.0.0"
+"@wdk/protocol-usdt0-evm@https://github.com/itsdeka/wdk-protocol-bridge-usdt0":
+  version "0.1.0-beta.1"
+  resolved "https://github.com/itsdeka/wdk-protocol-bridge-usdt0#09110f00d888f9ff8bc7e5561c4c752c9ada9aeb"
   dependencies:
     ethers "^6.0.0"
 
-"@wdk/wallet-management-evm@file:./external/@wdk/wallet-management-evm":
-  version "1.0.0"
+"@wdk/wallet-evm@https://github.com/itsdeka/wdk-wallet-evm":
+  version "0.1.0-beta.1"
+  resolved "https://github.com/itsdeka/wdk-wallet-evm#9ac56eef1e56ee6d259e30b65785869a2924b7c0"
   dependencies:
     ethers "^6.0.0"
 
-"@wdk/wallet-management-ton@file:./external/@wdk/wallet-management-ton":
-  version "1.0.0"
+"@wdk/wallet-ton@https://github.com/itsdeka/wdk-wallet-ton":
+  version "0.1.0-beta.1"
+  resolved "https://github.com/itsdeka/wdk-wallet-ton#faf99e00008d6f7091c8c0ac66729bd82b85e75b"
   dependencies:
     "@ton/crypto" "^3.3.0"
     "@ton/ton" "15.1.0"
