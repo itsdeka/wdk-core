@@ -7,10 +7,10 @@
     "docs": "jsdoc -r ./src --destination ./docs"
   },
   "dependencies": {
-    "@wdk/account-abstraction-evm": "https://github.com/itsdeka/wdk-account-abstraction-evm",
-    "@wdk/account-abstraction-ton": "https://github.com/itsdeka/wdk-account-abstraction-ton-main",
-    "@wdk/wallet-evm": "https://github.com/itsdeka/wdk-wallet-evm",
-    "@wdk/wallet-ton": "https://github.com/itsdeka/wdk-wallet-ton",
+    "@wdk/account-abstraction-evm": "https://github.com/tetherto/wdk-account-abstraction-evm",
+    "@wdk/account-abstraction-ton": "https://github.com/tetherto/wdk-account-abstraction-ton",
+    "@wdk/wallet-evm": "https://github.com/tetherto/wdk-wallet-evm",
+    "@wdk/wallet-ton": "https://github.com/tetherto/wdk-wallet-ton",
     "bip39": "^3.1.0"
   },
   "devDependencies": {
