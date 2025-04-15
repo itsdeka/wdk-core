@@ -1,7 +1,7 @@
-import { WDKWalletManagementEVM } from "@wdk/wallet-management-evm";
+import { WDKWalletManagementEVM } from "@wdk/wallet-evm";
 import { WDKAccountAbstractionEVM } from "@wdk/account-abstraction-evm";
 
-import { WDKWalletManagementTON } from "@wdk/wallet-management-ton";
+import { WDKWalletManagementTON } from "@wdk/wallet-ton";
 import { WDKAccountAbstractionTON } from "@wdk/account-abstraction-ton";
 
 import bip39 from "bip39";
