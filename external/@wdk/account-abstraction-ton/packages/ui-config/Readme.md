@@ -4,32 +4,32 @@
   </a>
 </p>
 
-<h1 align="center">@layerzerolabs/ui-config</h1>
+<h1 align="center">@wdk-account-abstraction-ton/ui-config</h1>
 
 <!-- The badges section -->
 <p align="center">
   <!-- Shields.io NPM published package version -->
-  <a href="https://www.npmjs.com/package/@layerzerolabs/ui-config"><img alt="NPM Version" src="https://img.shields.io/npm/v/@layerzerolabs/ui-config"/></a>
+  <a href="https://www.npmjs.com/package/@wdk-account-abstraction-ton/ui-config"><img alt="NPM Version" src="https://img.shields.io/npm/v/@wdk-account-abstraction-ton/ui-config"/></a>
   <!-- Shields.io NPM downloads -->
-  <a href="https://www.npmjs.com/package/@layerzerolabs/ui-config"><img alt="Downloads" src="https://img.shields.io/npm/dm/@layerzerolabs/ui-config"/></a>
+  <a href="https://www.npmjs.com/package/@wdk-account-abstraction-ton/ui-config"><img alt="Downloads" src="https://img.shields.io/npm/dm/@wdk-account-abstraction-ton/ui-config"/></a>
   <!-- Shields.io vulnerabilities -->
-  <a href="https://www.npmjs.com/package/@layerzerolabs/ui-config"><img alt="Snyk Vulnerabilities for npm package version" src="https://img.shields.io/snyk/vulnerabilities/npm/@layerzerolabs/ui-config"/></a>
+  <a href="https://www.npmjs.com/package/@wdk-account-abstraction-ton/ui-config"><img alt="Snyk Vulnerabilities for npm package version" src="https://img.shields.io/snyk/vulnerabilities/npm/@wdk-account-abstraction-ton/ui-config"/></a>
   <!-- Shields.io license badge -->
-  <a href="https://www.npmjs.com/package/@layerzerolabs/ui-config"><img alt="NPM License" src="https://img.shields.io/npm/l/@layerzerolabs/ui-config"/></a>
+  <a href="https://www.npmjs.com/package/@wdk-account-abstraction-ton/ui-config"><img alt="NPM License" src="https://img.shields.io/npm/l/@wdk-account-abstraction-ton/ui-config"/></a>
 </p>
 
 ## Installation
 
 ```bash
-yarn add @layerzerolabs/ui-config
+yarn add @wdk-account-abstraction-ton/ui-config
 
-pnpm add @layerzerolabs/ui-config
+pnpm add @wdk-account-abstraction-ton/ui-config
 
-npm install @layerzerolabs/ui-config
+npm install @wdk-account-abstraction-ton/ui-config
 ```
 
 ## Usage
 
 ```typescript
-import {deployments, rpcs, networks} from '@layerzerolabs/ui-config';
+import {deployments, rpcs, networks} from '@wdk-account-abstraction-ton/ui-config';
 ```

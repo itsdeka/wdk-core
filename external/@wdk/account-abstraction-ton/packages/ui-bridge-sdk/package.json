@@ -1,6 +1,6 @@
 {
-  "name": "@layerzerolabs/ui-bridge-sdk",
-  "version": "2.0.0-canary.0",
+  "name": "@wdk-account-abstraction-ton/ui-bridge-sdk",
+  "version": "2.0.0-canary.2",
   "main": "./dist/index.cjs",
   "module": "./dist/index.mjs",
   "types": "./dist/index.d.ts",
@@ -22,23 +22,30 @@
     }
   },
   "sideEffects": false,
-  "files": ["dist/**"],
+  "files": [
+    "v1",
+    "v2",
+    "dist/**"
+  ],
   "publishConfig": {
     "access": "public"
   },
   "scripts": {
     "build": "npx tsup",
     "dev": "npx tsup --watch",
-    "clean": "rm -rf .turbo && rm -rf node_modules && rm -rf dist"
+    "bump": "npm version prerelease --preid=canary",
+    "clean": "rm -rf .turbo && rm -rf node_modules && rm -rf dist && rm yarn.lock"
   },
   "keywords": [],
   "author": "",
   "license": "BUSL-1.1",
   "devDependencies": {
-    "@layerzerolabs/tsup-config": "~0.0.3",
-    "@layerzerolabs/ui-core": "1.0.0-canary.0"
+    "@ton/crypto": "3.3.0",
+    "@wdk-account-abstraction-ton/tsup-config": "0.0.8",
+    "@wdk-account-abstraction-ton/ui-core": "1.0.0-canary.2",
+    "typescript": "^5.0.4"
   },
   "peerDependencies": {
-    "@layerzerolabs/ui-core": "1.0.0-canary.0"
+    "@wdk-account-abstraction-ton/ui-core": "1.0.0-canary.2"
   }
 }

@@ -1,6 +1,6 @@
 import {expect, test, describe} from 'vitest';
 import {toHexAddress} from './address';
-import {InvalidAddressError} from '@layerzerolabs/ui-core';
+import {InvalidAddressError} from '@wdk-account-abstraction-ton/ui-core';
 
 describe('toHexAddress', () => {
   describe('converts', () => {

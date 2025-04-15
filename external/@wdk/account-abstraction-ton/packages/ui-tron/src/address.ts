@@ -1,4 +1,4 @@
-import {isTronAddress, InvalidAddressError} from '@layerzerolabs/ui-core';
+import {isTronAddress, InvalidAddressError} from '@wdk-account-abstraction-ton/ui-core';
 import {base58} from '@scure/base';
 import {bytesToHex, getAddress} from 'viem';
 

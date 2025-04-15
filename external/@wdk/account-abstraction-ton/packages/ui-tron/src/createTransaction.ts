@@ -1,4 +1,4 @@
-import type {ChainKey, Transaction, TransactionResult} from '@layerzerolabs/ui-core';
+import type {ChainKey, Transaction, TransactionResult} from '@wdk-account-abstraction-ton/ui-core';
 import type {TronWeb} from 'tronweb';
 import type * as tronTypes from './types';
 

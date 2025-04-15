@@ -7,7 +7,7 @@ import {
   type TestingSdk,
 } from './testing';
 
-import {type ChainKey, assert, waitFor} from '@layerzerolabs/ui-core';
+import {type ChainKey, assert, waitFor} from '@wdk-account-abstraction-ton/ui-core';
 import ERC20_ABI from './abi/ERC20.json';
 import {setErc20Balance} from './utils/setErc20Balance';
 import type {Anvil, CreateAnvilOptions} from '@viem/anvil';

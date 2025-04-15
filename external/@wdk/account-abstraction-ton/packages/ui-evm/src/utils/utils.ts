@@ -1,5 +1,5 @@
 import {ethers, utils} from 'ethers';
-import {isSolanaAddress} from '@layerzerolabs/ui-core';
+import {isSolanaAddress} from '@wdk-account-abstraction-ton/ui-core';
 
 export function hexZeroPadTo32(addr: string): string {
   return ethers.utils.hexZeroPad(addr, 32);

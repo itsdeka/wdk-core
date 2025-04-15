@@ -1,4 +1,4 @@
-import {assert} from '@layerzerolabs/ui-core';
+import {assert} from '@wdk-account-abstraction-ton/ui-core';
 import {isAptosAddress} from './utils/isAptosAddress';
 import type {AptosClient} from 'aptos';
 

@@ -1,4 +1,4 @@
-import type {TransferInput} from '@layerzerolabs/ui-bridge-sdk/v1';
+import type {TransferInput} from '@wdk-account-abstraction-ton/ui-bridge-sdk/v1';
 
 export interface TronWebProvider {
   contract: (abi?: any[], address?: string) => any;

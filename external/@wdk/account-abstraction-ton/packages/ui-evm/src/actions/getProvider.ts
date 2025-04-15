@@ -4,7 +4,7 @@ import {
   type Network,
   Web3Provider,
 } from '@ethersproject/providers';
-import type {ChainKey} from '@layerzerolabs/ui-core';
+import type {ChainKey} from '@wdk-account-abstraction-ton/ui-core';
 import type {GetPublicClient} from './getPublicClient';
 import {getAddress, type PublicClient} from 'viem';
 

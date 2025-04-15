@@ -1,4 +1,4 @@
-import {type ChainKey, assert} from '@layerzerolabs/ui-core';
+import {type ChainKey, assert} from '@wdk-account-abstraction-ton/ui-core';
 import type {BaseProvider} from '@ethersproject/providers';
 import type {ProviderFactory} from './providerFactory';
 

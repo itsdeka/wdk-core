@@ -7,7 +7,7 @@ import {
   isNativeCurrency,
   type Token,
   assert,
-} from '@layerzerolabs/ui-core';
+} from '@wdk-account-abstraction-ton/ui-core';
 import {TOKEN_PROGRAM_ID} from '@solana/spl-token';
 import {PublicKey, type Connection} from '@solana/web3.js';
 import memoize from 'moize';

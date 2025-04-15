@@ -18,7 +18,7 @@ import {
   type ApproveInput,
   type BridgeOption,
   validateInput,
-} from '@layerzerolabs/ui-bridge-sdk/v1';
+} from '@wdk-account-abstraction-ton/ui-bridge-sdk/v1';
 import {
   type Currency,
   type FeeQuote,
@@ -33,13 +33,13 @@ import {
   castCurrencyAmountUnsafe,
   AdapterParams,
   hasAddress,
-} from '@layerzerolabs/ui-core';
-import {addressToBytes32} from '@layerzerolabs/ui-evm';
+} from '@wdk-account-abstraction-ton/ui-core';
+import {addressToBytes32} from '@wdk-account-abstraction-ton/ui-evm';
 import {
   type SolanaSigner,
   createTransaction,
   getSimulationComputeUnits,
-} from '@layerzerolabs/ui-solana';
+} from '@wdk-account-abstraction-ton/ui-solana';
 import {getAssociatedTokenAddress, TOKEN_PROGRAM_ID} from '@solana/spl-token';
 import type {AccountMeta} from '@solana/web3.js';
 import {

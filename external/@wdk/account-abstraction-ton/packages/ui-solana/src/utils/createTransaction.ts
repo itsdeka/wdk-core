@@ -1,4 +1,4 @@
-import type {Transaction} from '@layerzerolabs/ui-core';
+import type {Transaction} from '@wdk-account-abstraction-ton/ui-core';
 import type {SolanaSigner, SolanaSubmitOptions, SolanaTransaction} from '../SolanaSigner';
 
 export function createTransaction(

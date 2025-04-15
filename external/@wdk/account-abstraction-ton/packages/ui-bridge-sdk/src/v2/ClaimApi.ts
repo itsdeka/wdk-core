@@ -1,4 +1,4 @@
-import type {Currency, Transaction} from '@layerzerolabs/ui-core';
+import type {Currency, Transaction} from '@wdk-account-abstraction-ton/ui-core';
 import type {ClaimInput, GetUnclaimedInput, GetUnclaimedResult} from './types';
 
 export interface ClaimApi<Signer = unknown> {

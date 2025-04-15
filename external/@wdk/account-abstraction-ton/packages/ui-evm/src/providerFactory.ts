@@ -5,7 +5,7 @@ import {
   getNetwork,
   type ChainKey,
   type Rpc,
-} from '@layerzerolabs/ui-core';
+} from '@wdk-account-abstraction-ton/ui-core';
 import {providers} from '@0xsequence/multicall';
 import type {BaseProvider} from '@ethersproject/providers';
 import memoize from 'micro-memoize';

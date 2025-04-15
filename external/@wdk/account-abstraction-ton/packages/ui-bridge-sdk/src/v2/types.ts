@@ -1,4 +1,4 @@
-import type {ChainKey, Currency, CurrencyAmount, MessageFee} from '@layerzerolabs/ui-core';
+import type {ChainKey, Currency, CurrencyAmount, MessageFee} from '@wdk-account-abstraction-ton/ui-core';
 
 export type BridgeMode = string;
 

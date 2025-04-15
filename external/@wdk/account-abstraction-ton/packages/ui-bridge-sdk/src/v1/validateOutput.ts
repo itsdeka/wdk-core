@@ -1,4 +1,4 @@
-import {assert, type CurrencyAmount, type Currency} from '@layerzerolabs/ui-core';
+import {assert, type CurrencyAmount, type Currency} from '@wdk-account-abstraction-ton/ui-core';
 import type {BridgeFeeBase, BridgeOutput} from './types';
 
 export function validateOutput<BridgeFee extends BridgeFeeBase>(

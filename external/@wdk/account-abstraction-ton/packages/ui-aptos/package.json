@@ -1,6 +1,6 @@
 {
-  "name": "@layerzerolabs/ui-aptos",
-  "version": "2.0.0-canary.0",
+  "name": "@wdk-account-abstraction-ton/ui-aptos",
+  "version": "2.0.0-canary.1",
   "type": "module",
   "main": "./dist/index.cjs",
   "module": "./dist/index.mjs",
@@ -11,15 +11,17 @@
     "import": "./dist/index.mjs"
   },
   "sideEffects": false,
-  "files": ["dist/**"],
+  "files": [
+    "dist/**"
+  ],
   "publishConfig": {
     "access": "public"
   },
   "scripts": {
-    "prebuild": "npm run clean",
     "build": "npx tsup",
     "dev": "npx tsup --watch",
-    "clean": "rm -rf .turbo && rm -rf node_modules && rm -rf dist"
+    "bump": "npm version prerelease --preid=canary",
+    "clean": "rm -rf .turbo && rm -rf node_modules && rm -rf dist && rm yarn.lock"
   },
   "keywords": [],
   "author": "",
@@ -29,13 +31,15 @@
     "p-memoize": "4.0.4"
   },
   "devDependencies": {
-    "@layerzerolabs/tsup-config": "~0.0.3",
-    "@layerzerolabs/ui-core": "1.0.0-canary.0",
+    "@wdk-account-abstraction-ton/tsup-config": "0.0.8",
+    "@wdk-account-abstraction-ton/ui-core": "1.0.0-canary.2",
+    "typescript": "^5.0.4",
     "aptos": "^1.20.0",
+    "@ton/crypto": "3.3.0",
     "zod": "^3.22.2"
   },
   "peerDependencies": {
-    "@layerzerolabs/ui-core": "1.0.0-canary.0",
+    "@wdk-account-abstraction-ton/ui-core": "1.0.0-canary.2",
     "aptos": "^1.20.0",
     "zod": "^3.22.2"
   }

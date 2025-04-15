@@ -6,7 +6,7 @@ import {
   isToken,
   isAptosChainKey,
   type ChainKey,
-} from '@layerzerolabs/ui-core';
+} from '@wdk-account-abstraction-ton/ui-core';
 import {isAptosAddress} from '../utils/isAptosAddress';
 
 import {isErrorOfAccountNotFound} from '../utils/errors';

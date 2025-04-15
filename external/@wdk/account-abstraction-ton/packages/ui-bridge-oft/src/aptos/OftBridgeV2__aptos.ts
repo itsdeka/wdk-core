@@ -1,4 +1,4 @@
-import {createTransaction, type GetAptosClientFunction} from '@layerzerolabs/ui-aptos';
+import {createTransaction, type GetAptosClientFunction} from '@wdk-account-abstraction-ton/ui-aptos';
 import type {
   BridgeApi,
   GetRouteInput,
@@ -9,7 +9,7 @@ import type {
   TransferInput,
   GetDurationInput,
   GetDurationResult,
-} from '@layerzerolabs/ui-bridge-sdk/v2';
+} from '@wdk-account-abstraction-ton/ui-bridge-sdk/v2';
 import {
   type Currency,
   CurrencyAmount,
@@ -22,18 +22,18 @@ import {
   type FeeQuote,
   isAptosChainKey,
   isEvmChainKey,
-} from '@layerzerolabs/ui-core';
+} from '@wdk-account-abstraction-ton/ui-core';
 import type {BCS, Types} from 'aptos';
 import type {OftBridgeConfig} from '../types';
 import {getDeployment, tryGetDeployment} from '../utils';
-import {AddressOne, addressToBytes32} from '@layerzerolabs/ui-evm';
+import {AddressOne, addressToBytes32} from '@wdk-account-abstraction-ton/ui-evm';
 import {
   getMinDstGas,
   getMessageFee,
   isErrorOfApiError,
   buildDefaultAdapterParams,
   buildAirdropAdapterParams,
-} from '@layerzerolabs/ui-aptos';
+} from '@wdk-account-abstraction-ton/ui-aptos';
 import type {AccountsConfig} from './types';
 import {getAccount, getOftAddress, getTypeAddress, sendCoinPayload} from './utils';
 

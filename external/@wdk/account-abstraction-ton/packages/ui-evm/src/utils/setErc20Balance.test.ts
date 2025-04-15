@@ -2,7 +2,7 @@ import {describe, it, beforeAll, afterAll, expect} from 'vitest';
 import {createAnvil} from '@viem/anvil';
 import {setErc20Balance} from './setErc20Balance';
 import {JsonRpcProvider} from '@ethersproject/providers';
-import {waitFor} from '@layerzerolabs/ui-core';
+import {waitFor} from '@wdk-account-abstraction-ton/ui-core';
 
 // TODO: run integration tests in separate workflow
 describe.skip('setErc20Balance', () => {

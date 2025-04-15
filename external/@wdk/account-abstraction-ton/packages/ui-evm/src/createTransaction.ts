@@ -6,7 +6,7 @@ import {
   getNetworkByNativeChainId,
   type Transaction,
   type TransactionResult,
-} from '@layerzerolabs/ui-core';
+} from '@wdk-account-abstraction-ton/ui-core';
 
 import type {Provider} from '@ethersproject/providers';
 import type {PopulatedTransaction} from '@ethersproject/contracts';

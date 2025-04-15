@@ -5,10 +5,10 @@
 const { Buffer } = require('buffer');
 const { Address, beginCell, storeMessageRelaxed, toNano } = require('@ton/core');
 const { WalletContractV5R1, internal, Cell } = require('@ton/ton');
-const { CurrencyAmount, Token } = require('@layerzerolabs/ui-core');
-const { parseTonAddress } = require('@layerzerolabs/ui-ton');
-const { createOftBridgeConfig } = require('@layerzerolabs/ui-bridge-oft');
-const { OftBridgeApiFactory__ton } = require('@layerzerolabs/ui-bridge-oft/ton');
+const { CurrencyAmount, Token } = require('@wdk-account-abstraction-ton/ui-core');
+const { parseTonAddress } = require('@wdk-account-abstraction-ton/ui-ton');
+const { createOftBridgeConfig } = require('@wdk-account-abstraction-ton/ui-bridge-oft');
+const { OftBridgeApiFactory__ton } = require('@wdk-account-abstraction-ton/ui-bridge-oft/ton');
 const { replace } = require('lodash-es');
 
 const MAXIMUM_BRIDGE_FEE = toNano(0.4604);
@@ -167,7 +167,7 @@ class BridgeOperations {
    * @param {Object} opts - Bridge operation options
    * @param {string} opts.address - Source address
    * @param {string} opts.recipient - Recipient address
-   * @param {string} opts.chain - Target chain ('ethereum', 'arbitrum', or 'tron')
+   * @param {string} opts.targetChain - Target chain ('ethereum', 'arbitrum', or 'tron')
    * @param {string} opts.nativeTokenDropAmount - Amount of native token to drop on destination chain
    * @param {boolean} [opts.simulate] - Whether to simulate the transaction
    * @param {Buffer} opts.publicKey - Public key buffer
@@ -177,9 +177,9 @@ class BridgeOperations {
    * @throws {Error} If chain is unsupported or insufficient balance
    */
   async bridge(opts) {
-    const { address, recipient, chain, nativeTokenDropAmount, simulate, publicKey, privateKey } = opts;
+    const { address, recipient, targetChain, nativeTokenDropAmount, simulate, publicKey, privateKey } = opts;
 
-    if (!['ethereum', 'arbitrum', 'tron'].includes(chain)) {
+    if (!['ethereum', 'arbitrum', 'tron'].includes(targetChain)) {
       throw new Error('Unsupported chain.');
     }
 
@@ -204,7 +204,7 @@ class BridgeOperations {
     );
 
     const body = await this._getBridgeBody({
-      dstChainKey: chain,
+      dstChainKey: targetChain,
       srcAddress: address,
       srcAmount: CurrencyAmount.fromRawAmount(
         Token.from({ decimals: 6, chainKey: 'ton' }),
@@ -212,7 +212,7 @@ class BridgeOperations {
       ),
       dstAddress: this._parseAddressToHex(recipient),
       dstAmountMin: CurrencyAmount.fromRawAmount(
-        Token.from({ decimals: 6, chainKey: chain }),
+        Token.from({ decimals: 6, chainKey: targetChain }),
         1
       ),
       fee: {
@@ -221,7 +221,7 @@ class BridgeOperations {
           100_000_000
         )
       },
-      dstNativeAmount: BigInt(nativeTokenDropAmount)
+      dstNativeAmount: BigInt(nativeTokenDropAmount ? nativeTokenDropAmount : 0)
     });
 
     const message = beginCell()
@@ -252,9 +252,7 @@ class BridgeOperations {
    * @param {Object} opts - Bridge operation options
    * @param {string} opts.address - Source address
    * @param {string} opts.recipient - Recipient address
-   * @param {string} opts.chain - Target chain ('ethereum', 'arbitrum', or 'tron')
-   * @param {string} opts.tokenAddress - Token contract address
-   * @param {number} opts.tokenDecimals - Number of decimals for the token
+   * @param {string} opts.targetChain - Target chain ('ethereum', 'arbitrum', or 'tron')
    * @param {string} opts.nativeTokenDropAmount - Amount of native token to drop on destination chain
    * @param {Buffer} opts.publicKey - Public key buffer
    * @param {Buffer} opts.privateKey - Private key buffer

@@ -4,7 +4,7 @@ import {
   endpointIdToChainKey,
   serializeCurrency,
   tokenSchema,
-} from '@layerzerolabs/ui-core';
+} from '@wdk-account-abstraction-ton/ui-core';
 import z from 'zod';
 import type {OftBridgeConfig} from './OftBridgeConfig';
 

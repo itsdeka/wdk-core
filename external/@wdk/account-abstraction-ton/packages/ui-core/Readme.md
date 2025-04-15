@@ -4,28 +4,28 @@
   </a>
 </p>
 
-<h1 align="center">@layerzerolabs/ui-core</h1>
+<h1 align="center">@wdk-account-abstraction-ton/ui-core</h1>
 
 <!-- The badges section -->
 <p align="center">
   <!-- Shields.io NPM published package version -->
-  <a href="https://www.npmjs.com/package/@layerzerolabs/ui-core"><img alt="NPM Version" src="https://img.shields.io/npm/v/@layerzerolabs/ui-core"/></a>
+  <a href="https://www.npmjs.com/package/@wdk-account-abstraction-ton/ui-core"><img alt="NPM Version" src="https://img.shields.io/npm/v/@wdk-account-abstraction-ton/ui-core"/></a>
   <!-- Shields.io NPM downloads -->
-  <a href="https://www.npmjs.com/package/@layerzerolabs/ui-core"><img alt="Downloads" src="https://img.shields.io/npm/dm/@layerzerolabs/ui-core"/></a>
+  <a href="https://www.npmjs.com/package/@wdk-account-abstraction-ton/ui-core"><img alt="Downloads" src="https://img.shields.io/npm/dm/@wdk-account-abstraction-ton/ui-core"/></a>
   <!-- Shields.io vulnerabilities -->
-  <a href="https://www.npmjs.com/package/@layerzerolabs/ui-core"><img alt="Snyk Vulnerabilities for npm package version" src="https://img.shields.io/snyk/vulnerabilities/npm/@layerzerolabs/ui-core"/></a>
+  <a href="https://www.npmjs.com/package/@wdk-account-abstraction-ton/ui-core"><img alt="Snyk Vulnerabilities for npm package version" src="https://img.shields.io/snyk/vulnerabilities/npm/@wdk-account-abstraction-ton/ui-core"/></a>
   <!-- Shields.io license badge -->
-  <a href="https://www.npmjs.com/package/@layerzerolabs/ui-core"><img alt="NPM License" src="https://img.shields.io/npm/l/@layerzerolabs/ui-core"/></a>
+  <a href="https://www.npmjs.com/package/@wdk-account-abstraction-ton/ui-core"><img alt="NPM License" src="https://img.shields.io/npm/l/@wdk-account-abstraction-ton/ui-core"/></a>
 </p>
 
 ## Installation
 
 ```bash
-yarn add @layerzerolabs/ui-core
+yarn add @wdk-account-abstraction-ton/ui-core
 
-pnpm add @layerzerolabs/ui-core
+pnpm add @wdk-account-abstraction-ton/ui-core
 
-npm install @layerzerolabs/ui-core
+npm install @wdk-account-abstraction-ton/ui-core
 ```
 
 ## Overview
@@ -52,7 +52,7 @@ import {
   tryGetNetwork,
   getNetworkByNativeChainId,
   tryGetNetworkByNativeChainId,
-} from '@layerzerolabs/ui-core';
+} from '@wdk-account-abstraction-ton/ui-core';
 
 const ethereum = getNetwork('ethereum'); // throws if not defined
 const aptos = tryGetNetwork('aptos'); // returns undefined if not defined
@@ -71,7 +71,7 @@ const osmosis = tryGetNetworkByNativeChainId('cosmos', 'osmosis'); // returns un
 We define the `Currency` type as either a `Token` or a `Coin`, both of which provide a public equality function. `Coin` is a native currency that will not have an address, while `Token` represents an ERC20 with a unique address.
 
 ```typescript
-import {Token, Coin, getNativeCurrency} from '@layerzerolabs/ui-core';
+import {Token, Coin, getNativeCurrency} from '@wdk-account-abstraction-ton/ui-core';
 
 const token = Token.from({
   chainKey: 'ethereum',
@@ -95,7 +95,7 @@ eth.equals(Coin.from({chainKey: 'ethereum', decimals: 18, symbol: 'ETH'})); // t
 The `CurrencyAmount` class should be used to manage any amounts in your dApp. The decimal scale varies across currencies, and mathematical operations and formatting should be treated carefully. This class extends `Fraction` which simplifies BigInt arithmetic, and provides a few formatting functions for various use cases.
 
 ```typescript
-import {parseCurrencyAmount, tryParseCurrencyAmount, CurrencyAmount} from '@layerzerolabs/ui-core';
+import {parseCurrencyAmount, tryParseCurrencyAmount, CurrencyAmount} from '@wdk-account-abstraction-ton/ui-core';
 
 // parsing
 const ethAmount = parseCurrencyAmount(eth, '1'); // throws if invalid input provided
@@ -123,7 +123,7 @@ Intro tx and more explicit example or additional comments explaining what each s
 
 ```typescript
 
-import {Transaction} from '@layerzerolabs/ui-core';
+import {Transaction} from '@wdk-account-abstraction-ton/ui-core';
 
 // Transaction<Signer> is an interface that has to be implemented by specific app
 
@@ -142,7 +142,7 @@ console.log(`Transaction hash is ${transactionReceipt.txHash}`);
 Intro the primitives and add example for Deployment
 
 ```typescript
-import {AdapterParams, FeeQuote, Deployment} from '@layerzerolabs/ui-core';
+import {AdapterParams, FeeQuote, Deployment} from '@wdk-account-abstraction-ton/ui-core';
 
 // sending message cross chain usually involves quoting message fee
 // message fee depends on adapterParams
@@ -170,7 +170,7 @@ const messageFee: FeeQuote = await app.quoteMessageFee({...input, adapterParams}
 Explain that this is the preferred way to use the core concepts from above and why
 
 ```typescript
-import {coreModule} from '@layerzerolabs/ui-core';
+import {coreModule} from '@wdk-account-abstraction-ton/ui-core';
 
 // list of configured networks
 const networks = coreModule.getNetworks();
@@ -222,7 +222,7 @@ Application Api hides the implementation details of a protocol exposing only the
 If you are familiar with [CQRS](https://martinfowler.com/bliki/CQRS.html), identify Commands and Queries your app needs to implement to fulfill its requirements. In our case we have one command `ping` and one query `getMessageFee` (user needs to know what will be the fee before sending the message).
 
 ```typescript
-import {ChainKey, Transaction, FeeQuote} from '@layerzerolabs/ui-core';
+import {ChainKey, Transaction, FeeQuote} from '@wdk-account-abstraction-ton/ui-core';
 
 // our interface to implement
 interface PingPongApi<Signer> {
@@ -277,7 +277,7 @@ import {
   serializeAdapterParams,
   createTransaction,
   type ProviderFactory,
-} from '@layerzerolabs/ui-evm';
+} from '@wdk-account-abstraction-ton/ui-evm';
 
 class PingPongApi__evm<Signer> implements PingPongApi<Signer> {
   constructor(
@@ -344,7 +344,7 @@ class PingPongApi__evm<Signer> implements PingPongApi<Signer> {
 Now it's time to use our app
 
 ```typescript
-import {createFailoverProviderFactory} from '@layerzerolabs/ui-evm';
+import {createFailoverProviderFactory} from '@wdk-account-abstraction-ton/ui-evm';
 import {Wallet} from 'ethers';
 
 const config: PingPongConfig = {

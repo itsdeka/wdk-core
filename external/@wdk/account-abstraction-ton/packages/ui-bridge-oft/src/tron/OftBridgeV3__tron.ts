@@ -9,7 +9,7 @@ import type {
   GetAllowanceInput,
   ApproveInput,
   GetLimitInput,
-} from '@layerzerolabs/ui-bridge-sdk/v1';
+} from '@wdk-account-abstraction-ton/ui-bridge-sdk/v1';
 import {
   AdapterParams,
   assert,
@@ -23,8 +23,8 @@ import {
   type Transaction,
   Currency,
   isTronChainKey,
-} from '@layerzerolabs/ui-core';
-import {AddressOne, AddressZero} from '@layerzerolabs/ui-evm';
+} from '@wdk-account-abstraction-ton/ui-core';
+import {AddressOne, AddressZero} from '@wdk-account-abstraction-ton/ui-evm';
 
 import type {SendParamStruct} from '../typechain/OFTV3';
 import type {OftBridgeConfig, OftBridgeFee} from '../types';

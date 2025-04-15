@@ -1,4 +1,4 @@
-import {assert} from '@layerzerolabs/ui-core';
+import {assert} from '@wdk-account-abstraction-ton/ui-core';
 import type {TransferInput} from './types';
 
 export function validateInput(input: TransferInput): asserts input is TransferInput {

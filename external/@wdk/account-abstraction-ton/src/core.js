@@ -108,7 +108,7 @@ class WDKAccountAbstractionTON {
    * @param {Object} opts - Bridge operation options
    * @param {string} opts.address - Source address
    * @param {string} opts.receiver - Destination address
-   * @param {string} opts.chain - Target chain ('ethereum', 'arbitrum', or 'tron')
+   * @param {string} opts.targetChain - Target chain ('ethereum', 'arbitrum', or 'tron')
    * @param {string} opts.nativeTokenDropAmount - Amount of native token to drop on destination chain
    * @param {boolean} [opts.simulate] - Whether to simulate the transaction
    * @param {Buffer} opts.publicKey - Public key buffer
@@ -125,7 +125,7 @@ class WDKAccountAbstractionTON {
    * @param {Object} opts - Bridge operation options
    * @param {string} opts.address - Source address
    * @param {string} opts.receiver - Destination address
-   * @param {string} opts.chain - Target chain ('ethereum', 'arbitrum', or 'tron')
+   * @param {string} opts.targetChain - Target chain ('ethereum', 'arbitrum', or 'tron')
    * @param {string} opts.nativeTokenDropAmount - Amount of native token to drop on destination chain
    * @param {Buffer} opts.publicKey - Public key buffer
    * @param {Buffer} opts.privateKey - Private key buffer

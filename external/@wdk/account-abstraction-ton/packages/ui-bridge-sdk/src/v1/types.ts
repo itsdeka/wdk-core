@@ -4,7 +4,7 @@ import type {
   AdapterParams,
   FeeQuote,
   ChainKey,
-} from '@layerzerolabs/ui-core';
+} from '@wdk-account-abstraction-ton/ui-core';
 
 export type PartialTransferInput<RequiredKeys extends keyof TransferInput> =
   Partial<TransferInput> & Required<Pick<TransferInput, RequiredKeys>>;

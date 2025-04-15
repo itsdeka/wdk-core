@@ -1,4 +1,4 @@
-import type {ProviderFactory} from '@layerzerolabs/ui-evm';
+import type {ProviderFactory} from '@wdk-account-abstraction-ton/ui-evm';
 import type {OftBridgeConfig} from '../types';
 import type {OftBridgeBase} from './impl/OftBridgeBase';
 import {OftBridgeV0} from './impl/OftBridgeV0';

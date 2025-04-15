@@ -4,28 +4,28 @@
   </a>
 </p>
 
-<h1 align="center">@layerzerolabs/ui-aptos</h1>
+<h1 align="center">@wdk-account-abstraction-ton/ui-aptos</h1>
 
 <!-- The badges section -->
 <p align="center">
   <!-- Shields.io NPM published package version -->
-  <a href="https://www.npmjs.com/package/@layerzerolabs/ui-aptos"><img alt="NPM Version" src="https://img.shields.io/npm/v/@layerzerolabs/ui-aptos"/></a>
+  <a href="https://www.npmjs.com/package/@wdk-account-abstraction-ton/ui-aptos"><img alt="NPM Version" src="https://img.shields.io/npm/v/@wdk-account-abstraction-ton/ui-aptos"/></a>
   <!-- Shields.io NPM downloads -->
-  <a href="https://www.npmjs.com/package/@layerzerolabs/ui-aptos"><img alt="Downloads" src="https://img.shields.io/npm/dm/@layerzerolabs/ui-aptos"/></a>
+  <a href="https://www.npmjs.com/package/@wdk-account-abstraction-ton/ui-aptos"><img alt="Downloads" src="https://img.shields.io/npm/dm/@wdk-account-abstraction-ton/ui-aptos"/></a>
   <!-- Shields.io vulnerabilities -->
-  <a href="https://www.npmjs.com/package/@layerzerolabs/ui-aptos"><img alt="Snyk Vulnerabilities for npm package version" src="https://img.shields.io/snyk/vulnerabilities/npm/@layerzerolabs/ui-aptos"/></a>
+  <a href="https://www.npmjs.com/package/@wdk-account-abstraction-ton/ui-aptos"><img alt="Snyk Vulnerabilities for npm package version" src="https://img.shields.io/snyk/vulnerabilities/npm/@wdk-account-abstraction-ton/ui-aptos"/></a>
   <!-- Shields.io license badge -->
-  <a href="https://www.npmjs.com/package/@layerzerolabs/ui-aptos"><img alt="NPM License" src="https://img.shields.io/npm/l/@layerzerolabs/ui-aptos"/></a>
+  <a href="https://www.npmjs.com/package/@wdk-account-abstraction-ton/ui-aptos"><img alt="NPM License" src="https://img.shields.io/npm/l/@wdk-account-abstraction-ton/ui-aptos"/></a>
 </p>
 
 ## Installation
 
 ```bash
-yarn add @layerzerolabs/ui-aptos
+yarn add @wdk-account-abstraction-ton/ui-aptos
 
-pnpm add @layerzerolabs/ui-aptos
+pnpm add @wdk-account-abstraction-ton/ui-aptos
 
-npm install @layerzerolabs/ui-aptos
+npm install @wdk-account-abstraction-ton/ui-aptos
 ```
 
 ## Usage

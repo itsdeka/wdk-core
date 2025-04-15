@@ -1,7 +1,7 @@
 import http from 'redaxios';
 import {JsonRpcProvider, BaseProvider, type Network} from '@ethersproject/providers';
 import {BigNumber, utils} from 'ethers';
-import {type ChainKey, assert, getNetwork, waitFor} from '@layerzerolabs/ui-core';
+import {type ChainKey, assert, getNetwork, waitFor} from '@wdk-account-abstraction-ton/ui-core';
 import type {ProviderFactory} from './providerFactory';
 import {
   type TestingFork,

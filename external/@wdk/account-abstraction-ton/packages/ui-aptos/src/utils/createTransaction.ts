@@ -1,6 +1,6 @@
 import type {AptosClient, Types} from 'aptos';
 import type {AptosSigner} from '../types/AptosSigner';
-import type {CurrencyAmount, Transaction, TransactionResult} from '@layerzerolabs/ui-core';
+import type {CurrencyAmount, Transaction, TransactionResult} from '@wdk-account-abstraction-ton/ui-core';
 
 export function createTransaction(
   entryFunctionPayload: Types.EntryFunctionPayload,

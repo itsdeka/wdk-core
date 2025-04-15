@@ -1,4 +1,4 @@
-import type {CurrencyAmount, Currency, Transaction, FeeQuote} from '@layerzerolabs/ui-core';
+import type {CurrencyAmount, Currency, Transaction, FeeQuote} from '@wdk-account-abstraction-ton/ui-core';
 import type {
   BridgeFeeBase,
   GetMessageFeeInput,

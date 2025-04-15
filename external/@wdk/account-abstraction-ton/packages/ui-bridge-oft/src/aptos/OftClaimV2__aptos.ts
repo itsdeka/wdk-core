@@ -1,10 +1,10 @@
-import {createTransaction, type GetAptosClientFunction} from '@layerzerolabs/ui-aptos';
+import {createTransaction, type GetAptosClientFunction} from '@wdk-account-abstraction-ton/ui-aptos';
 import type {
   ClaimApi,
   ClaimInput,
   GetUnclaimedInput,
   GetUnclaimedResult,
-} from '@layerzerolabs/ui-bridge-sdk/dist/v2';
+} from '@wdk-account-abstraction-ton/ui-bridge-sdk/dist/v2';
 import type {OftBridgeConfig} from '../types';
 import type {AccountsConfig} from './types';
 import {
@@ -12,7 +12,7 @@ import {
   CurrencyAmount,
   isAptosChainKey,
   type Transaction,
-} from '@layerzerolabs/ui-core';
+} from '@wdk-account-abstraction-ton/ui-core';
 import {claimCoinPayload, getOftAddress, getUnclaimed} from './utils';
 
 export class OftClaimV2__aptos implements ClaimApi<unknown> {

@@ -1,4 +1,4 @@
-import type {ChainKey} from '@layerzerolabs/ui-core';
+import type {ChainKey} from '@wdk-account-abstraction-ton/ui-core';
 import {type PublicClient, type Chain, createPublicClient, http} from 'viem';
 
 export type GetPublicClient = (chainKey: ChainKey) => PublicClient;

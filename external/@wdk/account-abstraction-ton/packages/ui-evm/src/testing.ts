@@ -1,4 +1,4 @@
-import type {ChainKey} from '@layerzerolabs/ui-core';
+import type {ChainKey} from '@wdk-account-abstraction-ton/ui-core';
 import type {BaseProvider} from '@ethersproject/providers';
 import {ProxyBaseProvider} from './providers/ProxyBaseProvider';
 

@@ -4,7 +4,7 @@
   </a>
 </p>
 
-<h1 align="center">@layerzerolabs/ui-ton</h1>
+<h1 align="center">@wdk-account-abstraction-ton/ui-ton</h1>
 
 <!-- The badges section -->
 <p align="center">

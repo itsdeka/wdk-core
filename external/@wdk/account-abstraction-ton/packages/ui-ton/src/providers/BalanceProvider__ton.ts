@@ -6,7 +6,7 @@ import {
   CurrencyAmount,
   getNativeCurrency,
   tryGetNetwork,
-} from '@layerzerolabs/ui-core';
+} from '@wdk-account-abstraction-ton/ui-core';
 import {parseTonAddress} from '../utils';
 import {UsdtMinter, UsdtWallet} from '../wrappers';
 import {getJettonAddressFromWallet} from '../getJettonAddressFromWallet';

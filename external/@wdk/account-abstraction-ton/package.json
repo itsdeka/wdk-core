@@ -20,9 +20,11 @@
     "setup": "yarn -W && turbo run build"
   },
   "dependencies": {
-    "@layerzerolabs/ui-bridge-oft": "file:packages/ui-bridge-oft",
-    "@layerzerolabs/ui-core": "file:packages/ui-core",
-    "@layerzerolabs/ui-ton": "file:packages/ui-ton",
+    "@wdk-account-abstraction-ton/ui-bridge-oft": "file:packages/ui-bridge-oft",
+    "@wdk-account-abstraction-ton/ui-core": "canary",
+    "@wdk-account-abstraction-ton/ui-ton": "canary",
+    "@wdk-account-abstraction-ton/ui-config": "canary",
+    "@wdk-account-abstraction-ton/ui-evm": "canary",
     "@ston-fi/api": "^0.21.0",
     "@ston-fi/sdk": "^2.3.0",
     "@tact-lang/compiler": "^1.6.3",

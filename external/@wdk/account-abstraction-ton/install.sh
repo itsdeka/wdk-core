@@ -1,60 +1,42 @@
 #!/bin/bash
 
-set -e  
-set -o pipefail  
+set -e  # Exit on error
 
-rm -rf node_modules .turbo
-yarn cache clean
-yarn install --check-files
-# yarn run turbo run build --force
+# 👇 Edit the order of packages here
+ORDERED_PACKAGES=(
+  # "ui-config"
+  # "ui-core"
+  # "ui-ton"
+  # "ui-tron"
+  # "ui-evm"
+  # "ui-aptos"
+  # "ui-solana"
+  # "ui-bridge-sdk"
+  "ui-bridge-oft"
+)
 
-echo "Building fundamental dependencies..."
-yarn run turbo run build --force --output-logs=errors-only --filter=@layerzerolabs/tsup-config
-yarn run turbo run build --force --output-logs=errors-only --filter=@layerzerolabs/typescript-config
-yarn run turbo run build --force --output-logs=errors-only --filter=@layerzerolabs/ui-config
+BASE_DIR="./packages"
 
-echo "Building core libraries..."
-yarn run turbo run build --force --output-logs=errors-only --filter=@layerzerolabs/ui-core
+for package in "${ORDERED_PACKAGES[@]}"; do
+  dir="$BASE_DIR/$package"
+  if [ -d "$dir" ]; then
+    echo "🔧 Processing $package"
+    (
+      cd "$dir"
+      echo "🧹 Cleaning..."
+      yarn clean || echo "⚠️  No clean script in $package"
 
-echo "Building platform-specific UI packages..."
-yarn run turbo run build --force --output-logs=errors-only --filter=@layerzerolabs/ui-evm
-yarn run turbo run build --force --output-logs=errors-only --filter=@layerzerolabs/ui-solana
-yarn run turbo run build --force --output-logs=errors-only --filter=@layerzerolabs/ui-tron
-yarn run turbo run build --force --output-logs=errors-only --filter=@layerzerolabs/ui-ton
-yarn run turbo run build --force --output-logs=errors-only --filter=@layerzerolabs/ui-aptos
+      echo "📦 Installing dependencies..."
+      yarn
 
-echo "Building wallet packages..."
-yarn run turbo run build --force --output-logs=errors-only --filter=@layerzerolabs/ui-wallet
-yarn run turbo run build --force --output-logs=errors-only --filter=@layerzerolabs/ui-wallet-evm
-yarn run turbo run build --force --output-logs=errors-only --filter=@layerzerolabs/ui-wallet-solana
-yarn run turbo run build --force --output-logs=errors-only --filter=@layerzerolabs/ui-wallet-ton
-yarn run turbo run build --force --output-logs=errors-only --filter=@layerzerolabs/ui-wallet-tron
-yarn run turbo run build --force --output-logs=errors-only --filter=@layerzerolabs/ui-wallet-aptos
-yarn run turbo run build --force --output-logs=errors-only --filter=@layerzerolabs/ui-wallet-cosmos
+      echo "🏗️  Building..."
+      yarn build
+    )
+    echo "✅ Done with $package"
+    echo "-----------------------------"
+  else
+    echo "❌ Directory $dir does not exist. Skipping..."
+  fi
+done
 
-echo "Building bridge SDKs..."
-yarn run turbo run build --force --output-logs=errors-only --filter=@layerzerolabs/ui-bridge-sdk
-
-echo "Building bridge packages..."
-yarn run turbo run build --force --output-logs=errors-only --filter=@layerzerolabs/ui-bridge-aptos
-yarn run turbo run build --force --output-logs=errors-only --filter=@layerzerolabs/ui-bridge-oft
-yarn run turbo run build --force --output-logs=errors-only --filter=@layerzerolabs/ui-bridge-oft-wrapper
-yarn run turbo run build --force --output-logs=errors-only --filter=@layerzerolabs/ui-bridge-onft
-yarn run turbo run build --force --output-logs=errors-only --filter=@layerzerolabs/ui-bridge-shrap
-yarn run turbo run build --force --output-logs=errors-only --filter=@layerzerolabs/ui-bridge-wab
-
-echo "Building Stargate SDKs & related packages..."
-yarn run turbo run build --force --output-logs=errors-only --filter=@layerzerolabs/ui-stargate
-yarn run turbo run build --force --output-logs=errors-only --filter=@layerzerolabs/ui-stargate-client
-yarn run turbo run build --force --output-logs=errors-only --filter=@layerzerolabs/ui-stargate-v1-sdk
-yarn run turbo run build --force --output-logs=errors-only --filter=@layerzerolabs/ui-stargate-v2-sdk
-yarn run turbo run build --force --output-logs=errors-only --filter=@layerzerolabs/ui-stargate-usdv
-
-echo "Building scan-client..."
-yarn run turbo run build --force --output-logs=errors-only --filter=@layerzerolabs/scan-client
-
-echo "Building utility libraries..."
-yarn run turbo run build --force --output-logs=errors-only --filter=@layerzerolabs/ui-superjson
-yarn run turbo run build --force --output-logs=errors-only --filter=@layerzerolabs/ui-price-sdk
-
-echo "Build process completed successfully!"
+echo "🎉 All specified packages processed successfully!"

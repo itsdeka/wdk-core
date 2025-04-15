@@ -1,10 +1,9 @@
 {
-  "name": "@layerzerolabs/ui-config",
-  "version": "0.0.0-canary.3",
+  "name": "@wdk-account-abstraction-ton/ui-config",
+  "version": "0.0.0-canary.7",
   "main": "./dist/index.cjs",
   "module": "./dist/index.mjs",
   "types": "./dist/index.d.ts",
-  "private": true,
   "exports": {
     "types": "./dist/index.d.ts",
     "require": "./dist/index.cjs",
@@ -19,15 +18,23 @@
     "update": "npx tsx scripts/update.ts",
     "build": "npx tsup",
     "dev": "npx tsup --watch",
-    "clean": "rm -rf .turbo && rm -rf node_modules && rm -rf dist"
+    "bump": "npm version prerelease --preid=canary",
+    "clean": "rm -rf .turbo && rm -rf node_modules && rm -rf dist && rm yarn.lock",
+    "publish": "npm publish --access public --tag canary"
   },
   "keywords": [],
   "author": "",
   "license": "BUSL-1.1",
   "devDependencies": {
-    "tiged": "^2.12.5",
+    "@layerzerolabs/lz-definitions": "3.0.*",
+    "@types/node": "^22.14.0",
+    "@wdk-account-abstraction-ton/tsup-config": "0.0.8",
     "glob": "^10.3.10",
-    "@layerzerolabs/tsup-config": "~0.0.3"
+    "tiged": "^2.12.5",
+    "typescript": "^5.0.4"
+  },
+  "dependencies": {
+    "@wdk-account-abstraction-ton/typescript-config": "^0.0.3"
   },
   "peerDependencies": {
     "tiged": "^2.12.5",

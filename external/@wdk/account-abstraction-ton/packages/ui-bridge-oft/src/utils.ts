@@ -1,11 +1,11 @@
-import {AdapterParams, ChainKey, isTonChainKey} from '@layerzerolabs/ui-core';
+import {AdapterParams, ChainKey, isTonChainKey} from '@wdk-account-abstraction-ton/ui-core';
 import type {OftBridgeDeployment, OftBridgeConfig} from './types';
-import {Options, addressToBytes32} from '@layerzerolabs/ui-evm';
+import {Options, addressToBytes32} from '@wdk-account-abstraction-ton/ui-evm';
 import {utils} from 'ethers';
-import {isTronChainKey} from '@layerzerolabs/ui-core';
-import {toHexAddress} from '@layerzerolabs/ui-tron';
+import {isTronChainKey} from '@wdk-account-abstraction-ton/ui-core';
+import {toHexAddress} from '@wdk-account-abstraction-ton/ui-tron';
 import {toHex} from 'tron-format-address';
-import {parseTonAddress} from '@layerzerolabs/ui-ton';
+import {parseTonAddress} from '@wdk-account-abstraction-ton/ui-ton';
 import {replace} from 'lodash-es';
 
 type CreateOptionsOverrides = {

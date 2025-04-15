@@ -5,30 +5,6 @@
       "dependsOn": ["^build"],
       "outputs": ["dist/**"],
       "cache": true
-    },
-    "build-core": {
-      "dependsOn": [
-        "@layerzerolabs/ui-core#build"
-      ],
-      "cache": false
-    },
-    "build-solana": {
-      "dependsOn": [
-        "@layerzerolabs/ui-solana#build"
-      ],
-      "cache": false
-    },
-    "build-ui-ton": {
-      "dependsOn": [
-        "@layerzerolabs/ui-ton#build"
-      ],
-      "cache": false
-    },
-    "build-wallet-ton": {
-      "dependsOn": [
-        "@layerzerolabs/ui-wallet-ton#build"
-      ],
-      "cache": false
     }
   }
 }

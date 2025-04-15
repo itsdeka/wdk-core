@@ -1,5 +1,5 @@
 import {ethers} from 'ethers';
-import {assert as invariant} from '@layerzerolabs/ui-core';
+import {assert as invariant} from '@wdk-account-abstraction-ton/ui-core';
 import {hexZeroPadTo32, trim0x} from './utils';
 
 // gasLimit input type

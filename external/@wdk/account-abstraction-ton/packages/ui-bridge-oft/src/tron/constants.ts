@@ -1,4 +1,4 @@
-import {AddressZero} from '@layerzerolabs/ui-evm';
+import {AddressZero} from '@wdk-account-abstraction-ton/ui-evm';
 
 // Common contract call options
 export const DEFAULT_FEE_LIMIT = 100_000_000;

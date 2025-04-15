@@ -5,7 +5,7 @@ import {
   getNativeCurrency,
   isToken,
   type Transaction,
-} from '@layerzerolabs/ui-core';
+} from '@wdk-account-abstraction-ton/ui-core';
 import type {AptosClient, Types} from 'aptos';
 import type {AptosResourceProvider} from './AptosResourceProvider';
 import type {AptosSigner} from './types/AptosSigner';

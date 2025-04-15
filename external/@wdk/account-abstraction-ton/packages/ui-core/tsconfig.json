@@ -1,5 +1,5 @@
 {
-  "extends": "@layerzerolabs/typescript-config/library.json",
+  "extends": "@wdk-account-abstraction-ton/typescript-config/library.json",
   "exclude": ["dist", "build", "node_modules", "scripts"],
   "compilerOptions": {
     "isolatedModules": true,

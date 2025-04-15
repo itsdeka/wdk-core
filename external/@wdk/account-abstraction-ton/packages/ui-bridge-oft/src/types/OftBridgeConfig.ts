@@ -1,4 +1,4 @@
-import type {ChainKey, Coin, Token} from '@layerzerolabs/ui-core';
+import type {ChainKey, Coin, Token} from '@wdk-account-abstraction-ton/ui-core';
 
 type OftProxyContract = {
   chainKey: ChainKey;

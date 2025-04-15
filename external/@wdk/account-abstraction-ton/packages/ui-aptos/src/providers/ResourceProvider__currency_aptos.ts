@@ -5,7 +5,7 @@ import {
   isToken,
   type ResourceProvider,
   type Transaction,
-} from '@layerzerolabs/ui-core';
+} from '@wdk-account-abstraction-ton/ui-core';
 import type {AptosManagedCoinRegisterService} from '../AptosManagedCoinRegisterService';
 import type {AptosSigner} from '../types/AptosSigner';
 

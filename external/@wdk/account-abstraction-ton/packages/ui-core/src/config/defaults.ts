@@ -1,4 +1,4 @@
-import {networks, deployments} from '@layerzerolabs/ui-config';
+import {networks, deployments} from '@wdk-account-abstraction-ton/ui-config';
 import {coreModule} from '../core';
 import {blockExplorers} from './blockExplorers';
 import {createRpcMap} from '../utils/createRpcMap';

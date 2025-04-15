@@ -1,4 +1,4 @@
-import {assert, type AdapterParams} from '@layerzerolabs/ui-core';
+import {assert, type AdapterParams} from '@wdk-account-abstraction-ton/ui-core';
 import {utils} from 'ethers';
 
 export function serializeAdapterParams(adapterParams: AdapterParams): string {

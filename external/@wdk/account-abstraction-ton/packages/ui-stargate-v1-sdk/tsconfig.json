@@ -1,8 +1,0 @@
-{
-  "extends": "@layerzerolabs/typescript-config/library.json",
-  "exclude": ["dist", "build", "node_modules"],
-  "include": ["vitest.d.ts", "src"],
-  "compilerOptions": {
-    "outDir": "dist"
-  }
-}

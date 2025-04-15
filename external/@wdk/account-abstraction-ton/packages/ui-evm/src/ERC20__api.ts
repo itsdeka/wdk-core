@@ -5,7 +5,7 @@ import {
   Token,
   type Transaction,
   assert,
-} from '@layerzerolabs/ui-core';
+} from '@wdk-account-abstraction-ton/ui-core';
 import type {BigNumber, Signer} from 'ethers';
 import type {Log, Provider} from '@ethersproject/abstract-provider';
 import {ERC20__factory} from './typechain/factories/ERC20__factory';

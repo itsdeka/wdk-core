@@ -1,6 +1,6 @@
 {
-  "name": "@layerzerolabs/ui-tron",
-  "version": "0.0.1",
+  "name": "@wdk-account-abstraction-ton/ui-tron",
+  "version": "1.0.0-canary.1",
   "type": "module",
   "main": "./dist/index.cjs",
   "module": "./dist/index.mjs",
@@ -19,22 +19,24 @@
   },
   "scripts": {
     "test": "vitest",
-    "prebuild": "npm run clean",
     "build": "npx tsup",
     "dev": "npx tsup --watch",
-    "clean": "rm -rf .turbo && rm -rf node_modules && rm -rf dist"
+    "bump": "npm version prerelease",
+    "clean": "rm -rf .turbo && rm -rf node_modules && rm -rf dist && rm yarn.lock"
   },
   "keywords": [],
   "author": "",
   "license": "BUSL-1.1",
   "devDependencies": {
-    "@layerzerolabs/tsup-config": "*",
-    "@layerzerolabs/ui-core": "*",
+    "@wdk-account-abstraction-ton/tsup-config": "0.0.8",
+    "@wdk-account-abstraction-ton/ui-core": "1.0.0-canary.2",
     "@scure/base": "1.1.9",
-    "tronweb": "6.0.0"
+    "tronweb": "6.0.0",
+    "@ton/crypto": "3.3.0",
+    "typescript": "^5.0.4"
   },
   "peerDependencies": {
     "@scure/base": "1.1.9",
-    "@layerzerolabs/ui-core": "*"
+    "@wdk-account-abstraction-ton/ui-core": "1.0.0-canary.2"
   }
 }

@@ -2,7 +2,7 @@ import type {OftBridgeConfig} from '../types';
 import type {OftBridgeBase} from '../evm/impl/OftBridgeBase';
 import {OftBridgeV3__tron} from './OftBridgeV3__tron';
 import type {TronWebProvider} from './types';
-import type {ChainKey} from '@layerzerolabs/ui-core';
+import type {ChainKey} from '@wdk-account-abstraction-ton/ui-core';
 
 export class OftBridgeApiFactory__tron {
   constructor(protected getTronWeb: (chainKey: ChainKey) => Promise<TronWebProvider>) {}

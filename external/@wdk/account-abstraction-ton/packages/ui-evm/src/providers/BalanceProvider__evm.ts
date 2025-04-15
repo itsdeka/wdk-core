@@ -9,7 +9,7 @@ import {
   isToken,
   tryGetNetwork,
   ChainType,
-} from '@layerzerolabs/ui-core';
+} from '@wdk-account-abstraction-ton/ui-core';
 import {ERC20__factory} from '../typechain';
 import type {ProviderFactory} from '../providerFactory';
 

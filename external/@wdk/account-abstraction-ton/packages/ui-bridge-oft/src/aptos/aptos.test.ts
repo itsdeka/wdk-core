@@ -1,10 +1,10 @@
-import type {GetAptosClientFunction} from '@layerzerolabs/ui-aptos';
+import type {GetAptosClientFunction} from '@wdk-account-abstraction-ton/ui-aptos';
 import {createOftBridgeConfig} from '../types';
 import {OftBridgeV2__aptos} from './OftBridgeV2__aptos';
 import {test, expect} from 'vitest';
 import {AptosClient} from 'aptos';
-import {assert, getNativeCurrency, parseCurrencyAmount} from '@layerzerolabs/ui-core';
-import {AddressOne} from '@layerzerolabs/ui-evm';
+import {assert, getNativeCurrency, parseCurrencyAmount} from '@wdk-account-abstraction-ton/ui-core';
+import {AddressOne} from '@wdk-account-abstraction-ton/ui-evm';
 import {getDeployment} from '../utils';
 import {OftClaimV2__aptos} from './OftClaimV2__aptos';
 

@@ -147,18 +147,18 @@ export default class WdkManager {
      * const abstractedAddress = await wdk.getAbstractedAddress("ethereum", 3);
      */
     async getAbstractedAddress(blockchain, accountIndex) {
-        const walletInfo = await this.#getWalletInfo(blockchain, accountIndex);
+        const accountInfo = await this.#getAccountInfo(blockchain, accountIndex);
 
         const manager = this.#accountAbstractionsManagers[blockchain];
 
         if (this.#isEvmBlockchain(blockchain)) {
-            const safe4337Pack = await manager.getSafe4337Pack(walletInfo);
+            const safe4337Pack = await manager.getSafe4337Pack(accountInfo);
     
             return await manager.getAbstractedAddress(safe4337Pack);
         }
 
         if (blockchain == "ton") {
-            return walletInfo.address;
+            return accountInfo.address;
         }
     }
 
@@ -181,20 +181,20 @@ export default class WdkManager {
      * console.log("Transaction hash:", transfer.hash);
      */
     async transfer(blockchain, accountIndex, options) {
-        const walletInfo = await this.#getWalletInfo(blockchain, accountIndex);
+        const accountInfo = await this.#getAccountInfo(blockchain, accountIndex);
 
         const manager = this.#accountAbstractionsManagers[blockchain];
 
         if (this.#isEvmBlockchain(blockchain)) {
             return await manager.send({
                 ...options,
-                safe4337Pack: await manager.getSafe4337Pack(walletInfo)
+                safe4337Pack: await manager.getSafe4337Pack(accountInfo)
             });
         }
 
         if (blockchain == "ton") {
             return await manager.send({
-                ...walletInfo,
+                ...accountInfo,
                 recipient: options.recipient,
                 amount: options.amount,
                 jettonMaster: options.token
@@ -222,14 +222,14 @@ export default class WdkManager {
      * console.log("Gas cost (in paymaster token):", quote.gasCost);
      */
     async quoteTransfer(blockchain, accountIndex, options) {
-        const walletInfo = await this.#getWalletInfo(blockchain, accountIndex);
+        const accountInfo = await this.#getAccountInfo(blockchain, accountIndex);
 
         const manager = this.#accountAbstractionsManagers[blockchain];
 
         if (this.#isEvmBlockchain(blockchain)) {
             const { success, ...quote } = await manager.quoteSend({
                 ...options,
-                safe4337Pack: await manager.getSafe4337Pack(walletInfo)
+                safe4337Pack: await manager.getSafe4337Pack(accountInfo)
             });
 
             if (!success)
@@ -240,7 +240,7 @@ export default class WdkManager {
 
         if (blockchain == "ton") {
             const { success, ...quote } = await manager.quoteSend({
-                ...walletInfo,
+                ...accountInfo,
                 recipient: options.recipient,
                 amount: options.amount,
                 jettonMaster: options.token
@@ -262,14 +262,14 @@ export default class WdkManager {
      * @returns {Promise<SwapResult>} The swap's result.
      */
     async swap(blockchain, accountIndex, options) {
-        const walletInfo = await this.#getWalletInfo(blockchain, accountIndex);
+        const accountInfo = await this.#getAccountInfo(blockchain, accountIndex);
 
         const manager = this.#accountAbstractionsManagers[blockchain];
 
         if (this.#isEvmBlockchain(blockchain)) {
             return await manager.swap({
                 ...options,
-                safe4337Pack: await manager.getSafe4337Pack(walletInfo)
+                safe4337Pack: await manager.getSafe4337Pack(accountInfo)
             });
         }
 
@@ -288,14 +288,14 @@ export default class WdkManager {
      * @returns {Promise<Omit<SwapResult, "hash">>} The swap's quotes.
      */
     async quoteSwap(blockchain, accountIndex, options) {
-        const walletInfo = await this.#getWalletInfo(blockchain, accountIndex);
+        const accountInfo = await this.#getAccountInfo(blockchain, accountIndex);
 
         const manager = this.#accountAbstractionsManagers[blockchain];
 
         if (this.#isEvmBlockchain(blockchain)) {
             const { success, ...quote } = await manager.quoteSwap({
                 ...options,
-                safe4337Pack: await manager.getSafe4337Pack(walletInfo)
+                safe4337Pack: await manager.getSafe4337Pack(accountInfo)
             });
 
             if (!success)
@@ -318,7 +318,7 @@ export default class WdkManager {
      * @returns {Promise<BridgeResult>} The bridge's result.
      */
     async bridge(blockchain, accountIndex, options) {
-        const walletInfo = await this.#getWalletInfo(blockchain, accountIndex);
+        const accountInfo = await this.#getAccountInfo(blockchain, accountIndex);
 
         const manager = this.#accountAbstractionsManagers[blockchain];
 
@@ -326,12 +326,15 @@ export default class WdkManager {
             return await manager.bridge({
                 ...options,
                 sourceChain: blockchain,
-                safe4337Pack: await manager.getSafe4337Pack(walletInfo)
+                safe4337Pack: await manager.getSafe4337Pack(accountInfo)
             });
         }
 
         if (blockchain == "ton") {
-            
+            return await manager.bridge({
+                ...options,
+                ...accountInfo
+            });
         }
     }
 
@@ -345,7 +348,7 @@ export default class WdkManager {
      * @returns {Promise<Omit<BridgeResult, "hash">>} The bridge's quotes.
      */
     async quoteBridge(blockchain, accountIndex, options) {
-        const walletInfo = await this.#getWalletInfo(blockchain, accountIndex);
+        const accountInfo = await this.#getAccountInfo(blockchain, accountIndex);
 
         const manager = this.#accountAbstractionsManagers[blockchain];
 
@@ -353,7 +356,7 @@ export default class WdkManager {
             const { success, ...quote } = await manager.quoteBridge({
                 ...options,
                 sourceChain: blockchain,
-                safe4337Pack: await manager.getSafe4337Pack(walletInfo)
+                safe4337Pack: await manager.getSafe4337Pack(accountInfo)
             });
 
             if (!success)
@@ -363,7 +366,15 @@ export default class WdkManager {
         }
 
         if (blockchain == "ton") {
-            
+            const { success, ...quote } = await manager.quoteBridge({
+                ...options,
+                ...accountInfo
+            });
+
+            if (!success)
+                throw new Error("Quote error:", quote.details);
+
+            return quote;
         }
     }
 
@@ -392,14 +403,14 @@ export default class WdkManager {
         return bip39.validateMnemonic(seed);
     }
 
-    async #getWalletInfo(blockchain, accountIndex) {
+    async #getAccountInfo(blockchain, accountIndex) {
         const seed = this.#seed;
 
         if (this.#isEvmBlockchain(blockchain)) {
             const manager = new WDKWalletManagementEVM();
 
             return await manager
-                .createWalletByIndex(seed instanceof string ? seed : seed.evm, accountIndex);
+                .createWalletByIndex(typeof seed == "string" ? seed : seed.evm, accountIndex);
         } 
         
         if (blockchain == "ton") {
@@ -408,7 +419,7 @@ export default class WdkManager {
             const accountIndexSeed = manager.getSeed(accountIndex);
 
             return await manager
-                .getWalletDetails(seed instanceof string ? seed : seed.ton, accountIndexSeed);
+                .getWalletDetails(typeof seed == "string" ? seed : seed.ton, accountIndexSeed);
         }
     }
 

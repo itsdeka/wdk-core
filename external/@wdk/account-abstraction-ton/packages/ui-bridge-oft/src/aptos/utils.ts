@@ -1,5 +1,5 @@
-import {type Accounts, isErrorOfApiError} from '@layerzerolabs/ui-aptos';
-import {assert, hasAddress, type ChainKey} from '@layerzerolabs/ui-core';
+import {type Accounts, isErrorOfApiError} from '@wdk-account-abstraction-ton/ui-aptos';
+import {assert, hasAddress, type ChainKey} from '@wdk-account-abstraction-ton/ui-core';
 import type {BCS, Types, MaybeHexString, AptosClient} from 'aptos';
 import type {AccountsConfig} from './types';
 import {getDeployment} from '../utils';

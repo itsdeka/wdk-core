@@ -1,4 +1,4 @@
-import {AdapterParams, getNativeCurrency, parseCurrencyAmount} from '@layerzerolabs/ui-core';
+import {AdapterParams, getNativeCurrency, parseCurrencyAmount} from '@wdk-account-abstraction-ton/ui-core';
 import {describe, test, expect} from 'vitest';
 import {serializeAdapterParams} from './serializeAdapterParams';
 import {ONE_ADDRESS} from './constants';

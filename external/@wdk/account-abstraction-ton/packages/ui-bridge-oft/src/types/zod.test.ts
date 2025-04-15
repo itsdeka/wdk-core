@@ -1,6 +1,6 @@
 import {describe, it, expect} from 'vitest';
 import {type SerializedOftBridgeConfig, createOftBridgeConfig, oftBridgeConfigSchema} from './zod';
-import {Token, Coin} from '@layerzerolabs/ui-core';
+import {Token, Coin} from '@wdk-account-abstraction-ton/ui-core';
 
 // todo provide more test cases when schema fails
 describe('zod', () => {

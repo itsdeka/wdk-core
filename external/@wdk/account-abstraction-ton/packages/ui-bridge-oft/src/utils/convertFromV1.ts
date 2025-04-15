@@ -5,7 +5,7 @@ import {
   endpointIdToStage,
   getNativeCurrency,
   type Token,
-} from '@layerzerolabs/ui-core';
+} from '@wdk-account-abstraction-ton/ui-core';
 import type {SerializedOftBridgeConfig} from '../types';
 
 type OldOftBridgeConfig = {

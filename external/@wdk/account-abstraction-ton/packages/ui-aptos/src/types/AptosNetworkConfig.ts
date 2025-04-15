@@ -1,4 +1,4 @@
-import type {ChainKey} from '@layerzerolabs/ui-core';
+import type {ChainKey} from '@wdk-account-abstraction-ton/ui-core';
 
 export type AptosNetworkConfigs = Partial<Record<ChainKey, AptosNetworkConfig>>;
 

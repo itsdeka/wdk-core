@@ -1,4 +1,4 @@
-import {Transaction, TransactionResult} from '@layerzerolabs/ui-core';
+import {Transaction, TransactionResult} from '@wdk-account-abstraction-ton/ui-core';
 import {TonSigner, TonTransaction} from './TonSigner';
 import {Address, storeMessage, TonClient} from '@ton/ton';
 import {beginCell, Cell, Transaction as TonClientTransaction} from '@ton/core';

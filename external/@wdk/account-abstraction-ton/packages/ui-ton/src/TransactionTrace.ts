@@ -1,5 +1,5 @@
 'use server';
-import {Stage} from '@layerzerolabs/ui-core';
+import {Stage} from '@wdk-account-abstraction-ton/ui-core';
 import {Cell} from '@ton/core';
 import {bigintToAsciiString, clGetUint} from '@layerzerolabs/lz-ton-sdk-v2';
 import {parseTonAddress} from './utils';

@@ -1,4 +1,4 @@
-import {defineConfig, getDefaultConfig} from '@layerzerolabs/tsup-config';
+import {defineConfig, getDefaultConfig} from '@wdk-account-abstraction-ton/tsup-config';
 
 export default defineConfig({
   ...getDefaultConfig(),

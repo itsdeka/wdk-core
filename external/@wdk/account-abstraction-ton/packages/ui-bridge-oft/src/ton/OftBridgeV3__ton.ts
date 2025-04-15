@@ -14,7 +14,7 @@ import {
   computeTonUlnConnectionAddress,
   addressToBigInt,
   computeTonChannelAddress,
-} from '@layerzerolabs/ui-ton';
+} from '@wdk-account-abstraction-ton/ui-ton';
 import {
   ApproveInput,
   type BridgeOption,
@@ -34,7 +34,7 @@ import {
   RegisterInput,
   Seconds,
   TransferInput,
-} from '@layerzerolabs/ui-bridge-sdk/v1';
+} from '@wdk-account-abstraction-ton/ui-bridge-sdk/v1';
 import {
   assert,
   type ChainKey as ChainKeyType,
@@ -50,7 +50,7 @@ import {
   MessageFee,
   Token,
   Transaction,
-} from '@layerzerolabs/ui-core';
+} from '@wdk-account-abstraction-ton/ui-core';
 import {Cell, OpenedContract, TonClient, Tuple, TupleItemCell} from '@ton/ton';
 import {Address, beginCell, toNano} from '@ton/core';
 import {ChainKey} from '@layerzerolabs/lz-definitions';
