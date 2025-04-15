@@ -419,7 +419,7 @@ export default class WdkManager {
             const accountIndexSeed = manager.getSeed(accountIndex);
 
             return await manager
-                .getWalletDetails(typeof seed == "string" ? seed : seed.ton, accountIndexSeed);
+                .getWalletDetails(typeof seed == "string" ? seed.split(' ') : seed.ton, accountIndexSeed);
         }
     }
 
