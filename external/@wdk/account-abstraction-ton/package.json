@@ -17,7 +17,7 @@
     "build-wallet-ton": "turbo run build-wallet-ton",
     "test": "turbo run test",
     "lint": "turbo run lint",
-    "setup": "yarn -W && turbo run build"
+    "setup": "yarn -W && chmod +x install.sh && ./install.sh"
   },
   "dependencies": {
     "@wdk-account-abstraction-ton/ui-bridge-oft": "file:packages/ui-bridge-oft",

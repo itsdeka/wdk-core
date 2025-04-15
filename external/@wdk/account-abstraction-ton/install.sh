@@ -4,18 +4,26 @@ set -e  # Exit on error
 
 # 👇 Edit the order of packages here
 ORDERED_PACKAGES=(
-  # "ui-config"
-  # "ui-core"
-  # "ui-ton"
-  # "ui-tron"
-  # "ui-evm"
-  # "ui-aptos"
-  # "ui-solana"
-  # "ui-bridge-sdk"
+  "ui-config"
+  "ui-core"
+  "ui-ton"
+  "ui-tron"
+  "ui-evm"
+  "ui-aptos"
+  "ui-solana"
+  "ui-bridge-sdk"
   "ui-bridge-oft"
 )
 
-BASE_DIR="./packages"
+# Determine the base directory
+if [ -d "./packages" ]; then
+  BASE_DIR="./packages"
+elif [ -d "../../packages" ]; then
+  BASE_DIR="../../packages"
+else
+  echo "❌ Could not find packages directory"
+  exit 1
+fi
 
 for package in "${ORDERED_PACKAGES[@]}"; do
   dir="$BASE_DIR/$package"
