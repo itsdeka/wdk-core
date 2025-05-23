@@ -13,7 +13,7 @@
   "dependencies": {
     "@wdk/account-abstraction-evm": "https://github.com/tetherto/wdk-account-abstraction-evm",
     "@wdk/account-abstraction-ton": "https://github.com/tetherto/wdk-account-abstraction-ton",
-    "@wdk/wallet-btc": "https://github.com/tetherto/wdk-wallet-btc",
+    "@wdk/wallet-btc": "https://github.com/itsdeka/wdk-wallet-btc#fixConnections",
     "@wdk/wallet-evm": "https://github.com/tetherto/wdk-wallet-evm",
     "@wdk/wallet-spark": "https://github.com/tetherto/wdk-wallet-spark",
     "@wdk/wallet-ton": "https://github.com/tetherto/wdk-wallet-ton",
